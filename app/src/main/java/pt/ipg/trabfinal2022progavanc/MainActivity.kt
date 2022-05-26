@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val intent = Intent(this, FirstFragment::class.java)
+        val intent = Intent(this, MainActivity2::class.java)
         startActivity(intent)
 
 
