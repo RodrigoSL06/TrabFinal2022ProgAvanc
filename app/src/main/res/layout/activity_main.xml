@@ -12,9 +12,10 @@
         android:id="@+id/img_logo"
         android:layout_width="150dp"
         android:layout_height="130dp"
-        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_logo_dp"
         tools:srcCompat="@drawable/_955250f9384ee2583539fa6a99199bc" />
@@ -23,13 +24,16 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/anonymous_pro"
         android:text="Torneio de Futsal"
         android:textColor="@color/black"
-        android:layout_marginTop="30dp"
         android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_logo"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/img_logo"
         app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,14 +60,13 @@
         android:id="@+id/password_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/ic_lock"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text_input"
         android:hint="PassWord"
-        app:errorEnabled="true">
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@+id/username_text_input"
+        app:layout_constraintStart_toStartOf="@+id/username_text_input"
+        app:layout_constraintTop_toBottomOf="@+id/username_text_input"
+        app:startIconDrawable="@drawable/ic_lock">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_text"
@@ -101,8 +104,12 @@
         android:layout_gravity="center"
         android:text="Versão: 0.00"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_button"
+        app:layout_constraintVertical_bias="0.786" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
