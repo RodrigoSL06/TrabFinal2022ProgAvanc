@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2" >
+    android:background="@drawable/fundo"
+    tools:context=".MainActivity2">
 
 
     <Button
         android:id="@+id/buttonEquipa"
         android:layout_width="175dp"
         android:layout_height="190dp"
-        android:layout_marginStart="@dimen/margem_ecran"
-        android:layout_marginLeft="@dimen/margem_ecran"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="52dp"
+        android:adjustViewBounds="true"
         android:drawableTop="@drawable/team"
         android:text="Equipa"
         android:textColor="@color/black"
@@ -24,17 +26,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#AAAAAA"
-        app:strokeWidth="1dp"
-        android:adjustViewBounds="true"
-        />
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/buttonTreinador"
         android:layout_width="175dp"
         android:layout_height="190dp"
         android:layout_marginTop="52dp"
-        android:layout_marginEnd="@dimen/margem_ecran"
-        android:layout_marginRight="@dimen/margem_ecran"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:drawableTop="@drawable/coach"
         android:scaleType="fitEnd"
         android:text="Treinador"
@@ -62,8 +62,6 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonTreinador"
         app:strokeColor="#AAAAAA"
         app:strokeWidth="1dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
