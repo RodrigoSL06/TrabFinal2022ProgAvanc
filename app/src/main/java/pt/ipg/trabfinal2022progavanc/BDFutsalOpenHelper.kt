@@ -5,12 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 
-class BDFutsalOpenHelper(
-    context: Context?,
-    name: String?,
-    factory: SQLiteDatabase.CursorFactory?,
-    version: Int
-) : SQLiteOpenHelper(context, name, factory, version) {
+class BDFutsalOpenHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, NOME, factory, VERSAO) {
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -18,7 +13,12 @@ class BDFutsalOpenHelper(
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        requireNotNull(db)
+
+        TabelaBDEquipa(db).cria()
+        TabelaBDJogador(db).cria()
+        TabelaBDTreinador(db).cria()
+
     }
 
     /**
@@ -44,6 +44,10 @@ class BDFutsalOpenHelper(
      * @param newVersion The new database version.
      */
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+    }
+
+    companion object {
+        const val NOME = "futsal.db"
+        private const val VERSAO = 1
     }
 }
