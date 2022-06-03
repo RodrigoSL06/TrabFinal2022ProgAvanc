@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'pt.ipg.trabfinal2022progavanc'
 }
 
 dependencies {

@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_logo_dp"
-        tools:srcCompat="@drawable/_955250f9384ee2583539fa6a99199bc" />
+        tools:srcCompat="@drawable/initi" />
 
     <TextView
         android:id="@+id/title"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/anonymous_pro"
-        android:text="Torneio de Futsal"
+        android:text="@string/Torneio"
         android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="@+id/img_logo"
@@ -79,10 +79,9 @@
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
-        android:text="Entrar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_text_input" />
 
     <com.google.android.material.button.MaterialButton
