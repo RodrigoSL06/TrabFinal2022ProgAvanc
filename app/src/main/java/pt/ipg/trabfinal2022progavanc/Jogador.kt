@@ -5,10 +5,10 @@ import java.util.*
 
 data class Jogador(
     var nome: String,
-    var ncamisola: Long,
+    var ncamisola: String,
     var equipa: String,
     var data_nascimento: Date,
-    var telemovel: Long,
+    var telemovel: String,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()

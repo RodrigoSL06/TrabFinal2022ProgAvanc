@@ -6,7 +6,7 @@ import java.util.*
 data class Equipa(
     var nome: String,
     var localidade: String,
-    var njogador: Long,
+    var njogador: String,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
