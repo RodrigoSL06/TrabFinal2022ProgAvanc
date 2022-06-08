@@ -15,4 +15,12 @@
     <string name="Coach">Coach</string>
     <string name="Player">Player</string>
     <string name="Login">Login</string>
+    <string name="Inserir">Inserir</string>
+    <string name="title_activity_main_activity3_team">MainActivity3Team</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="Settings">Settings</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Alterar">Alterar</string>
 </resources>
