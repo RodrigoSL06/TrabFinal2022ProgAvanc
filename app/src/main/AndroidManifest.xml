@@ -9,6 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabFinal2022ProgAvanc">
         <activity
+            android:name=".MainActivity5Player"
+            android:exported="false"
+            android:label="@string/title_activity_main_activity5_player"
+            android:theme="@style/Theme.TrabFinal2022ProgAvanc.NoActionBar" />
+        <activity
+            android:name=".MainActivity4Team"
+            android:exported="false"
+            android:label="@string/title_activity_main_activity4_team"
+            android:theme="@style/Theme.TrabFinal2022ProgAvanc.NoActionBar" />
+        <activity
             android:name=".MainActivity3Coach"
             android:exported="false"
             android:label="@string/title_activity_main_activity3_team" />

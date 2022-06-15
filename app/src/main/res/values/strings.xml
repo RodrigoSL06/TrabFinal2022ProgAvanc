@@ -23,4 +23,7 @@
     <string name="Settings">Settings</string>
     <string name="Eliminar">Eliminar</string>
     <string name="Alterar">Alterar</string>
+    <string name="title_activity_main_activity4_team">MainActivity4Team</string>
+    <string name="Register">Register</string>
+    <string name="title_activity_main_activity5_player">Player</string>
 </resources>
