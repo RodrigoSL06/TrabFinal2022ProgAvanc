@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/anonymous_pro"
-        android:text="@string/Torneio"
+        android:text="@string/FutsalTournament"
         android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="@+id/img_logo"
@@ -41,13 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:hint="@string/UserName"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_logo_dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:hint="UserName"
-        app:errorEnabled="true">
+        app:startIconDrawable="@drawable/ic_logo_dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username_edit_text"
@@ -60,7 +60,7 @@
         android:id="@+id/password_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="PassWord"
+        android:hint="@string/Password"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="@+id/username_text_input"
@@ -82,19 +82,8 @@
         android:text="@string/Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_text_input" />
+        app:layout_constraintTop_toBottomOf="@id/password_text_input"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/register_button"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:text="Registar"
-        android:textColor="@color/black"
-        app:backgroundTint="@color/white"
-        app:iconTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/entrar_button" />
 
     <TextView
         android:id="@+id/version_app"

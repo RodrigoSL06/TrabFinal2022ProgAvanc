@@ -39,4 +39,7 @@
     <string name="BirthDate">Birth Date</string>
     <string name="NumberPhone">Number Phone</string>
     <string name="SweaterNumber">Sweater Number</string>
+    <string name="FutsalTournament">Futsal Tournament</string>
+    <string name="UserName">User Name</string>
+    <string name="Password">Password</string>
 </resources>
