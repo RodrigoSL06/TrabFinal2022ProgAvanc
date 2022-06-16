@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/buttonEquipa"
+        android:id="@+id/button_Equipa"
         android:layout_width="175dp"
         android:layout_height="190dp"
         android:layout_marginStart="15dp"
@@ -22,7 +22,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:backgroundTint="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/buttonTreinador"
+        app:layout_constraintEnd_toStartOf="@+id/button_Treinador"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/buttonTreinador"
+        android:id="@+id/button_Treinador"
         android:layout_width="175dp"
         android:layout_height="190dp"
         android:layout_marginTop="52dp"
@@ -48,7 +48,7 @@
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/buttonJogador"
+        android:id="@+id/button_Jogador"
         android:layout_width="175dp"
         android:layout_height="190dp"
         android:layout_marginTop="16dp"
@@ -60,11 +60,9 @@
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTreinador"
+        app:layout_constraintTop_toBottomOf="@+id/button_Treinador"
         app:strokeColor="#AAAAAA"
         app:strokeWidth="1dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
