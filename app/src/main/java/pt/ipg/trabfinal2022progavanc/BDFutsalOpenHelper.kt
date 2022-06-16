@@ -18,6 +18,7 @@ class BDFutsalOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
         TabelaBDEquipa(db).cria()
         TabelaBDJogador(db).cria()
         TabelaBDTreinador(db).cria()
+        TabelaBDLocalidade(db).cria()
 
     }
 
