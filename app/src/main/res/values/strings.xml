@@ -35,4 +35,8 @@
     <string name="Locality">Locality</string>
     <string name="Numberofplayers">Number of players</string>
     <string name="Create">Create</string>
+    <string name="title_activity_main5">MainActivity5</string>
+    <string name="BirthDate">Birth Date</string>
+    <string name="NumberPhone">Number Phone</string>
+    <string name="SweaterNumber">Sweater Number</string>
 </resources>
