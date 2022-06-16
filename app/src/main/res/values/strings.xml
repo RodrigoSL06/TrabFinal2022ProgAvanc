@@ -26,4 +26,13 @@
     <string name="title_activity_main_activity4_team">MainActivity4Team</string>
     <string name="Register">Register</string>
     <string name="title_activity_main_activity5_player">Player</string>
+    <string name="title_activity_main3">MainActivity3</string>
+    <string name="Read">Read</string>
+    <string name="Update">Update</string>
+    <string name="Delete">Delete</string>
+    <string name="title_activity_main4">MainActivity4</string>
+    <string name="Name">Name</string>
+    <string name="Locality">Locality</string>
+    <string name="Numberofplayers">Number of players</string>
+    <string name="Create">Create</string>
 </resources>

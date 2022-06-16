@@ -9,6 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabFinal2022ProgAvanc">
         <activity
+            android:name=".MainActivity4"
+            android:exported="false"
+            android:label="@string/title_activity_main4" />
+        <activity
+            android:name=".MainActivity3"
+            android:exported="false"
+            android:label="@string/title_activity_main3" />
+        <activity
             android:name=".MainActivity5Player"
             android:exported="false"
             android:label="@string/title_activity_main_activity5_player"
