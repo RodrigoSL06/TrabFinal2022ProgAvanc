@@ -199,5 +199,25 @@ class BaseDadosTeste {
 
     }
 
+    fun consegueAlterarLocalidade() {
 
+        val db = getWritableDatabase()
+
+        val localidade = Localidade(
+            nome = "Lisboa",
+
+        )
+
+        localidade.nome = "Guimaraes"
+
+        val registosAlterados = TabelaBDTreinador(db).update(
+            localidade.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${localidade.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+
+    }
 }
