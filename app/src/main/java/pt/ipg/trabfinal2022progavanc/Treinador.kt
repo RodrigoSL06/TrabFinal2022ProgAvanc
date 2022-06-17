@@ -2,6 +2,7 @@ package pt.ipg.trabfinal2022progavanc
 
 import android.content.ContentValues
 import android.database.Cursor
+import android.provider.BaseColumns
 import java.util.*
 
 data class Treinador(
@@ -22,5 +23,23 @@ data class Treinador(
         return valores
     }
 
-    
+    companion object {
+        fun fromCursor(cursor: Cursor): Treinador {
+
+            val colNome = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_NOME)
+            val colEquipa = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_EQUIPA)
+            val colDataNascimento = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_DATA_NASCIMENTO)
+            val colTelemovel = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_TELEMOVEL)
+            val colId = cursor.getColumnIndex(BaseColumns._ID)
+
+            val nome = cursor.getString(colNome)
+            val equipa = cursor.getString(colEquipa)
+            val dataNascimento = cursor.getString(colDataNascimento)
+            val telemovel = cursor.getString(colTelemovel)
+            val id = cursor.getLong(colId)
+
+            return Treinador(nome, equipa, Date(dataNascimento), telemovel, id )
+
+        }
+    }
 }
