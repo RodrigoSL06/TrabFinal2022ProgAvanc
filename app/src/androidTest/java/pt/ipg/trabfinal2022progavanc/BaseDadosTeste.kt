@@ -140,7 +140,34 @@ class BaseDadosTeste {
             assertEquals(1,registosAlterados)
 
             db.close()
-        
+
+    }
+
+    fun consegueAlterarTreinador() {
+
+        val db = getWritableDatabase()
+
+        val treinador = Treinador(
+            nome = "Pepa",
+            equipa = "Guimaraes",
+            data_nascimento = Date(1975 - 1900, 4, 11),
+            telemovel = "912587449"
+        )
+
+        treinador.nome = "Nuno Oliveira"
+        treinador.equipa = "Belenenses"
+        treinador.data_nascimento = Date(1979 - 1900, 4, 11)
+        treinador.telemovel = "913587456"
+
+        val registosAlterados = TabelaBDTreinador(db).update(
+            treinador.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${treinador.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+
     }
 
 
