@@ -1,6 +1,8 @@
 package pt.ipg.trabfinal2022progavanc
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.provider.BaseColumns
 import java.util.*
 
 data class Jogador(
@@ -24,4 +26,6 @@ data class Jogador(
 
         return valores
     }
+
+
 }

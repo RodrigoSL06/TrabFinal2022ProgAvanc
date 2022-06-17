@@ -5,7 +5,7 @@ import java.util.*
 
 data class Localidade(
     var nome: String,
-
+    var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()

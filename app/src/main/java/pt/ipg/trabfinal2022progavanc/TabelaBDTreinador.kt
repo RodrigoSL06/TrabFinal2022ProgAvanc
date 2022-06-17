@@ -8,7 +8,7 @@ class TabelaBDTreinador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
         db.execSQL(
             "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "$CAMPO_NOME TEXT NOT NULL, $CAMPO_EQUIPA  REFERENCES ${TabelaBDEquipa.CAMPO_NOME} on delete restrict," +
-                    "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_TELEMOVEL INTERGER NOT NULL)")
+                    "$CAMPO_DATA_NASCIMENTO DATE NOT NULL, $CAMPO_TELEMOVEL INTERGER NOT NULL)")
     }
 
 
