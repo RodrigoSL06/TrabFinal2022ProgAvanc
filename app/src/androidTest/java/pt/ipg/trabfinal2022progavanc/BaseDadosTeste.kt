@@ -170,5 +170,34 @@ class BaseDadosTeste {
 
     }
 
+    fun consegueAlterarJogador() {
+
+        val db = getWritableDatabase()
+
+        val jogador = Jogador(
+            nome = "Andre",
+            ncamisola = "10",
+            equipa = "Guimaraes",
+            data_nascimento = Date(1993 - 1900, 5, 11),
+            telemovel = "912580047"
+        )
+
+        jogador.nome = "Varela"
+        jogador.ncamisola = "19"
+        jogador.equipa = "Belenenses"
+        jogador.data_nascimento = Date(1994 - 1900, 10, 11)
+        jogador.telemovel = "913544450"
+
+        val registosAlterados = TabelaBDTreinador(db).update(
+            jogador.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${jogador.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+
+    }
+
 
 }
