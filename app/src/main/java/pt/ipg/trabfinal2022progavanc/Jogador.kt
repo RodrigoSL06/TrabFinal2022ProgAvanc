@@ -27,5 +27,24 @@ data class Jogador(
         return valores
     }
 
+    companion object {
+        fun fromCursor(cursor: Cursor): Jogador {
 
+            val colNome = cursor.getColumnIndex(TabelaBDJogador.CAMPO_NOME)
+            val colNCamisola = cursor.getColumnIndex(TabelaBDJogador.CAMPO_NCAMISOLA)
+            val colEquipa = cursor.getColumnIndex(TabelaBDJogador.CAMPO_EQUIPA)
+            val colDataNascimento = cursor.getColumnIndex(TabelaBDJogador.CAMPO_DATA_NASCIMENTO)
+            val colTelemovel = cursor.getColumnIndex(TabelaBDJogador.CAMPO_TELEMOVEL)
+            val colId = cursor.getColumnIndex(BaseColumns._ID)
+
+            val nome = cursor.getString(colNome)
+            val ncamisola = cursor.getString(colNCamisola)
+            val equipa = cursor.getString(colEquipa)
+            val dataNascimento = cursor.getString(colDataNascimento)
+            val telemovel = cursor.getString(colTelemovel)
+            val id = cursor.getLong(colId)
+
+            return Jogador(nome, ncamisola, equipa, Date(dataNascimento), telemovel, id)
+        }
+    }
 }
