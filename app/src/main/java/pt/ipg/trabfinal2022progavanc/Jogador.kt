@@ -4,12 +4,13 @@ import android.content.ContentValues
 import java.util.*
 
 data class Jogador(
+
     var nome: String,
     var ncamisola: String,
     var equipa: String,
     var data_nascimento: Date,
-    var telemovel: String,
-) {
+    var telemovel: String, ) {
+
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 

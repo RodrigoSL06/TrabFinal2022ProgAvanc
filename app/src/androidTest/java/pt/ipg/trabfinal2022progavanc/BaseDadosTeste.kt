@@ -39,4 +39,15 @@ class BaseDadosTeste {
 
         db.close()
     }
+
+    fun consegueInserirEquipa() {
+        val db = getWritableDatabase()
+
+        val equipa = Equipa("Sporting","Lisboa","11")
+
+        TabelaBDEquipa(db).insert(equipa.toContentValues())
+
+        db.close()
+    }
+
 }
