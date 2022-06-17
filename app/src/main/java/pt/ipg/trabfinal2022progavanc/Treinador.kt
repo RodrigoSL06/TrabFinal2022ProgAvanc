@@ -8,6 +8,7 @@ data class Treinador(
     var equipa: String,
     var data_nascimento: Date,
     var telemovel: String,
+    var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()

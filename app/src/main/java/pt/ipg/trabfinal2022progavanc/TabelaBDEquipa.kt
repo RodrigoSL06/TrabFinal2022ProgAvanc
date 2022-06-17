@@ -7,7 +7,7 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
             "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_NUM_JOGADORES INTEGER NOT NULL )")
+                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_NUM_JOGADORES INTEGER NOT NULL, $CAMPO_TREINADOR TEXT NOT NULL )")
     }
 
     companion object {
@@ -15,6 +15,7 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
         const val CAMPO_NOME = "nome"
         const val CAMPO_LOCALIDADE = "localidade"
         const val CAMPO_NUM_JOGADORES = "num jogadores"
+        const val CAMPO_TREINADOR = " treinador"
     }
 }
 

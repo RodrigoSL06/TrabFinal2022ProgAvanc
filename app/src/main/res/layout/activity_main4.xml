@@ -45,7 +45,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/equipa_text_input"
+        android:id="@+id/locality_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -66,7 +66,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/birthdate_text_input"
+        android:id="@+id/numbPlayers_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -76,9 +76,9 @@
         android:hint="@string/BirthDate"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/equipa_text_input"
-        app:layout_constraintStart_toStartOf="@+id/equipa_text_input"
-        app:layout_constraintTop_toBottomOf="@+id/equipa_text_input"
+        app:layout_constraintEnd_toEndOf="@+id/locality_text_input"
+        app:layout_constraintStart_toStartOf="@+id/locality_text_input"
+        app:layout_constraintTop_toBottomOf="@+id/locality_text_input"
         app:startIconDrawable="@drawable/ic_calendar">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -98,9 +98,9 @@
         android:layout_marginRight="30dp"
         android:hint="@string/NumberPhone"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/birthdate_text_input"
-        app:layout_constraintStart_toStartOf="@+id/birthdate_text_input"
-        app:layout_constraintTop_toBottomOf="@+id/birthdate_text_input"
+        app:layout_constraintEnd_toEndOf="@+id/numbPlayers_text_input"
+        app:layout_constraintStart_toStartOf="@+id/numbPlayers_text_input"
+        app:layout_constraintTop_toBottomOf="@+id/numbPlayers_text_input"
         app:startIconDrawable="@drawable/ic_phone">
 
         <com.google.android.material.textfield.TextInputEditText

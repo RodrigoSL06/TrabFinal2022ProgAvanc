@@ -25,6 +25,7 @@ class BaseDadosTeste {
         return openHelper.writableDatabase
     }
 
+
     @Test
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDFutsalOpenHelper.NOME)
@@ -49,5 +50,6 @@ class BaseDadosTeste {
 
         db.close()
     }
+
 
 }
