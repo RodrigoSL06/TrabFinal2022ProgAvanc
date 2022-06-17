@@ -1,6 +1,7 @@
 package pt.ipg.trabfinal2022progavanc
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -113,6 +114,33 @@ class BaseDadosTeste {
         TabelaBDLocalidade(db).insert(localidade.toContentValues())
 
         db.close()
+    }
+
+    fun consegueAlterarEquipa() {
+
+        val db = getWritableDatabase()
+
+        val equipa = Equipa(
+            nome = "Braga",
+            localidade = "Braga",
+            njogador = "11",
+            treinador = "Carlos Carvalhal"
+        )
+
+            equipa.nome = "Tondela"
+            equipa.localidade = "Viseu"
+            equipa.njogador = "11"
+            equipa.treinador ="Nuno Campos"
+
+        val registosAlterados = TabelaBDEquipa(db).update(
+            equipa.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${equipa.id}"))
+
+            assertEquals(1,registosAlterados)
+
+            db.close()
+        
     }
 
 
