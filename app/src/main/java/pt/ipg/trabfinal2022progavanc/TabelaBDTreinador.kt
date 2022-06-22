@@ -14,9 +14,13 @@ class TabelaBDTreinador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
 
     companion object {
         const val NOME_TABELA = "Treinador"
+
+        const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
         const val CAMPO_EQUIPA = "equipa"
         const val CAMPO_DATA_NASCIMENTO = "data nascimento"
         const val CAMPO_TELEMOVEL = "telemovel"
+
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_EQUIPA, CAMPO_DATA_NASCIMENTO, CAMPO_TELEMOVEL)
     }
 }

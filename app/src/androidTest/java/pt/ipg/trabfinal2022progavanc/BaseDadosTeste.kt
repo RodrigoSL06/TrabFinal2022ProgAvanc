@@ -96,7 +96,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDEquipa(db).update(
             equipa.toContentValues(),
-            "${BaseColumns._ID}= ?",
+            "${TabelaBDEquipa.CAMPO_NOME}= ?",
             arrayOf("${equipa.id}"))
 
         assertEquals(1,registosAlterados)
@@ -118,7 +118,7 @@ class BaseDadosTeste {
         insereEquipa(db, equipa)
 
         val registosEliminados = TabelaBDEquipa(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEquipa.CAMPO_NOME}=?",
             arrayOf("${equipa.id}"))
 
         assertEquals(1, registosEliminados)
@@ -159,7 +159,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDTreinador(db).update(
             treinador.toContentValues(),
-            "${BaseColumns._ID}= ?",
+            "${TabelaBDTreinador.CAMPO_NOME}= ?",
             arrayOf("${treinador.id}"))
 
         assertEquals(1,registosAlterados)
@@ -181,7 +181,7 @@ class BaseDadosTeste {
         insereTreinador(db, treinador)
 
         val registosEliminados = TabelaBDTreinador(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTreinador.CAMPO_NOME}=?",
             arrayOf("${treinador.id}"))
 
         assertEquals(1, registosEliminados)
@@ -225,7 +225,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDTreinador(db).update(
             jogador.toContentValues(),
-            "${BaseColumns._ID}= ?",
+            "${TabelaBDJogador.CAMPO_ID}= ?",
             arrayOf("${jogador.id}"))
 
         assertEquals(1,registosAlterados)
@@ -248,7 +248,7 @@ class BaseDadosTeste {
         insereJogador(db, jogador)
 
         val registosEliminados = TabelaBDJogador(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDJogador.CAMPO_ID}=?",
             arrayOf("${jogador.id}"))
 
         assertEquals(1, registosEliminados)
@@ -281,7 +281,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDTreinador(db).update(
             localidade.toContentValues(),
-            "${BaseColumns._ID}= ?",
+            "${TabelaBDLocalidade.CAMPO_ID}= ?",
             arrayOf("${localidade.id}"))
 
         assertEquals(1,registosAlterados)
@@ -300,11 +300,12 @@ class BaseDadosTeste {
         insereLocalidade(db, localidade)
 
         val registosEliminados = TabelaBDLocalidade(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDLocalidade.CAMPO_ID}=?",
             arrayOf("${localidade.id}"))
 
         assertEquals(1, registosEliminados)
 
         db.close()
     }
+    
 }
