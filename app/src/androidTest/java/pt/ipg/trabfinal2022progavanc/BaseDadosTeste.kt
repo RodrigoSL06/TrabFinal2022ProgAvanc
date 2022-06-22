@@ -42,6 +42,11 @@ class BaseDadosTeste {
         assertNotEquals(-1, jogador.id)
     }
 
+    private fun insereLocalidade(db: SQLiteDatabase, localidade : Localidade) {
+        localidade.id = TabelaBDEquipa(db).insert(localidade.toContentValues())
+        assertNotEquals(-1, localidade.id)
+    }
+
 
     @Test
     fun apagaBaseDados() {
@@ -73,6 +78,54 @@ class BaseDadosTeste {
         db.close()
     }
 
+    fun consegueAlterarEquipa() {
+
+        val db = getWritableDatabase()
+
+        val equipa = Equipa(
+            nome = "Braga",
+            localidade = "Braga",
+            njogador = "11",
+            treinador = "Carlos Carvalhal"
+        )
+
+        equipa.nome = "Tondela"
+        equipa.localidade = "Viseu"
+        equipa.njogador = "11"
+        equipa.treinador ="Nuno Campos"
+
+        val registosAlterados = TabelaBDEquipa(db).update(
+            equipa.toContentValues(),
+            "${BaseColumns._ID}= ?",
+            arrayOf("${equipa.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+
+    }
+
+    @Test
+    fun consegueEliminarEquipa() {
+        val db = getWritableDatabase()
+
+        val equipa = Equipa(
+            nome = "Braga",
+            localidade = "Braga",
+            njogador = "11",
+            treinador = "Carlos Carvalhal"
+        )
+        insereEquipa(db, equipa)
+
+        val registosEliminados = TabelaBDEquipa(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${equipa.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
     fun consegueInserirTreinador() {
         val db = getWritableDatabase()
 
@@ -86,61 +139,6 @@ class BaseDadosTeste {
         TabelaBDTreinador(db).insert(treinador.toContentValues())
 
         db.close()
-    }
-
-    fun consegueInserirJogador() {
-        val db = getWritableDatabase()
-
-        val jogador = Jogador(
-            nome = "Pedro Gonçalves",
-            ncamisola = "7",
-            equipa = "Sporting",
-            data_nascimento = Date(1991 - 1900, 4, 11),
-            telemovel = "932544879"
-        )
-
-        TabelaBDJogador(db).insert(jogador.toContentValues())
-
-        db.close()
-    }
-
-    fun consegueInserirLocalidade() {
-        val db = getWritableDatabase()
-
-        val localidade = Localidade(
-            nome = "Sporting"
-        )
-
-        TabelaBDLocalidade(db).insert(localidade.toContentValues())
-
-        db.close()
-    }
-
-    fun consegueAlterarEquipa() {
-
-        val db = getWritableDatabase()
-
-        val equipa = Equipa(
-            nome = "Braga",
-            localidade = "Braga",
-            njogador = "11",
-            treinador = "Carlos Carvalhal"
-        )
-
-            equipa.nome = "Tondela"
-            equipa.localidade = "Viseu"
-            equipa.njogador = "11"
-            equipa.treinador ="Nuno Campos"
-
-        val registosAlterados = TabelaBDEquipa(db).update(
-            equipa.toContentValues(),
-            "${BaseColumns._ID}= ?",
-            arrayOf("${equipa.id}"))
-
-            assertEquals(1,registosAlterados)
-
-            db.close()
-
     }
 
     fun consegueAlterarTreinador() {
@@ -168,6 +166,43 @@ class BaseDadosTeste {
 
         db.close()
 
+    }
+
+    @Test
+    fun consegueEliminarTreinador() {
+        val db = getWritableDatabase()
+
+        val treinador = Treinador(
+            nome = "Reuben Amorim",
+            equipa = "Sporting",
+            data_nascimento = Date(1980 - 1900, 1, 7),
+            telemovel = "963656789"
+        )
+        insereTreinador(db, treinador)
+
+        val registosEliminados = TabelaBDTreinador(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${treinador.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    fun consegueInserirJogador() {
+        val db = getWritableDatabase()
+
+        val jogador = Jogador(
+            nome = "Pedro Gonçalves",
+            ncamisola = "7",
+            equipa = "Sporting",
+            data_nascimento = Date(1991 - 1900, 4, 11),
+            telemovel = "932544879"
+        )
+
+        TabelaBDJogador(db).insert(jogador.toContentValues())
+
+        db.close()
     }
 
     fun consegueAlterarJogador() {
@@ -199,6 +234,40 @@ class BaseDadosTeste {
 
     }
 
+    @Test
+    fun consegueEliminarJogador() {
+        val db = getWritableDatabase()
+
+        val jogador = Jogador(
+            nome = "Andre",
+            ncamisola = "10",
+            equipa = "Guimaraes",
+            data_nascimento = Date(1993 - 1900, 5, 11),
+            telemovel = "912580047"
+        )
+        insereJogador(db, jogador)
+
+        val registosEliminados = TabelaBDJogador(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${jogador.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    fun consegueInserirLocalidade() {
+        val db = getWritableDatabase()
+
+        val localidade = Localidade(
+            nome = "Sporting"
+        )
+
+        TabelaBDLocalidade(db).insert(localidade.toContentValues())
+
+        db.close()
+    }
+
     fun consegueAlterarLocalidade() {
 
         val db = getWritableDatabase()
@@ -219,5 +288,23 @@ class BaseDadosTeste {
 
         db.close()
 
+    }
+
+    @Test
+    fun consegueEliminarLocalidade() {
+        val db = getWritableDatabase()
+
+        val localidade = Localidade(
+            nome = "Sporting"
+        )
+        insereLocalidade(db, localidade)
+
+        val registosEliminados = TabelaBDLocalidade(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${localidade.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
     }
 }
