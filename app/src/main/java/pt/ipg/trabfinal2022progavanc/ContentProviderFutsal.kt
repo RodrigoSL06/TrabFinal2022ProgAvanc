@@ -138,9 +138,19 @@ class ContentProviderFutsal : ContentProvider() {
      * @param uri the URI to query.
      * @return a MIME type string, or `null` if there is no type.
      */
-    override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
-    }
+    override fun getType(uri: Uri): String? =
+        when (getUriMatcher().match(uri)) {
+            URI_EQUIPA -> "$MULTIPLOS_REGISTOS/${TabelaBDEquipa.NOME_TABELA}"
+            URI_JOGADOR -> "$MULTIPLOS_REGISTOS/${TabelaBDEquipa.NOME_TABELA}"
+            URI_LOCALIDADE -> "$MULTIPLOS_REGISTOS/${TabelaBDJogador.NOME_TABELA}"
+            URI_TREINADOR -> "$MULTIPLOS_REGISTOS/${TabelaBDJogador.NOME_TABELA}"
+            URI_EQUIPA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDLocalidade.NOME_TABELA}"
+            URI_JOGADOR_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDLocalidade.NOME_TABELA}"
+            URI_LOCALIDADE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDTreinador.NOME_TABELA}"
+            URI_TREINADOR_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDTreinador.NOME_TABELA}"
+
+            else -> null
+        }
 
     /**
      * Implement this to handle requests to insert a new row. As a courtesy,
@@ -220,6 +230,9 @@ class ContentProviderFutsal : ContentProvider() {
         const val URI_LOCALIDADE_ESPECIFICO = 301
         const val URI_TREINADOR = 400
         const val URI_TREINADOR_ESPECIFICO = 401
+
+        const val UNICO_REGISTO = "vnd.android.cursor.item"
+        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
