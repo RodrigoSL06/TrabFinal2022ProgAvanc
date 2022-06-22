@@ -6,9 +6,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.UriMatcher
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ContentProviderFutsal : ContentProvider() {
-    var db : BDFutsalOpenHelper? = null
+    var dbOpenHelper : BDFutsalOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -37,7 +38,7 @@ class ContentProviderFutsal : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        db = BDFutsalOpenHelper(context)
+        dbOpenHelper = BDFutsalOpenHelper(context)
 
         return true
     }
@@ -192,7 +193,21 @@ class ContentProviderFutsal : ContentProvider() {
      * @throws SQLException
      */
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosApagados = when (getUriMatcher().match(uri)) {
+            URI_EQUIPA_ESPECIFICA -> TabelaBDEquipa(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_JOGADOR_ESPECIFICO -> TabelaBDJogador(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LOCALIDADE_ESPECIFICO-> TabelaBDLocalidade(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TREINADOR_ESPECIFICO -> TabelaBDTreinador(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosApagados
     }
 
     /**
