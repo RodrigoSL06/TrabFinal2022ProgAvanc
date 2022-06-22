@@ -4,6 +4,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteOpenHelper
+import android.content.UriMatcher
 import android.net.Uri
 
 class ContentProviderFutsal : ContentProvider() {
@@ -206,5 +207,33 @@ class ContentProviderFutsal : ContentProvider() {
         selectionArgs: Array<out String>?
     ): Int {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        const val AUTHORITY = "pt.ipg.trabfinal2022progavanc"
+
+        const val URI_EQUIPA = 100
+        const val URI_EQUIPA_ESPECIFICA = 101
+        const val URI_JOGADOR = 200
+        const val URI_JOGADOR_ESPECIFICO = 201
+        const val URI_LOCALIDADE = 300
+        const val URI_LOCALIDADE_ESPECIFICO = 301
+        const val URI_TREINADOR = 400
+        const val URI_TREINADOR_ESPECIFICO = 401
+
+        fun getUriMatcher() : UriMatcher {
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDEquipa.NOME_TABELA, URI_EQUIPA)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDEquipa.NOME_TABELA}/#", URI_EQUIPA_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, TabelaBDJogador.NOME_TABELA, URI_JOGADOR)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDJogador.NOME_TABELA}/#", URI_JOGADOR_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDLocalidade.NOME_TABELA, URI_LOCALIDADE)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDLocalidade.NOME_TABELA}/#", URI_LOCALIDADE_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDTreinador.NOME_TABELA, URI_TREINADOR)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDTreinador.NOME_TABELA}/#", URI_TREINADOR_ESPECIFICO)
+
+            return uriMatcher
+        }
     }
 }
