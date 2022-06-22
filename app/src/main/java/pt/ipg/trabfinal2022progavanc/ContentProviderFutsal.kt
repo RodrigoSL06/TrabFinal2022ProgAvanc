@@ -3,9 +3,11 @@ package pt.ipg.trabfinal2022progavanc
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
+import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
 
-class ContentProviderLivros : ContentProvider() {
+class ContentProviderFutsal : ContentProvider() {
+    var db : BDFutsalOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -34,7 +36,9 @@ class ContentProviderLivros : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        db = BDFutsalOpenHelper(context)
+
+        return true
     }
 
     /**
