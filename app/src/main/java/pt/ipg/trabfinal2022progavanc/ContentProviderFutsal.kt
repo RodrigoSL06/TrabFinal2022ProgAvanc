@@ -247,7 +247,23 @@ class ContentProviderFutsal : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosAlterados = when (getUriMatcher().match(uri)) {
+            URI_EQUIPA_ESPECIFICA -> TabelaBDEquipa(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_JOGADOR_ESPECIFICO -> TabelaBDJogador(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LOCALIDADE_ESPECIFICO -> TabelaBDLocalidade(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TREINADOR_ESPECIFICO -> TabelaBDTreinador(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosAlterados
     }
 
     companion object {
