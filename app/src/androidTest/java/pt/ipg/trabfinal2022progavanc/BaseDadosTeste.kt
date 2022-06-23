@@ -189,7 +189,37 @@ class BaseDadosTeste {
         db.close()
     }
 
-    
+    @Test
+    fun consegueLerTreinador() {
+        val db = getWritableDatabase()
+
+        val equipa = Equipa("Tondela","Viseu","11","Antonio")
+        insereEquipa(db, equipa)
+
+        val treinador = Treinador(
+            nome = "Reuben Amorim",
+            equipa = "Sporting",
+            data_nascimento = Date(1980 - 1900, 1, 7),
+            telemovel = "963656789")
+        insereTreinador(db,treinador)
+
+        val cursor = TabelaBDJogador(db).query(
+            TabelaBDTreinador.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${treinador.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val treinadorBD = Treinador.fromCursor(cursor)
+        assertEquals(treinador, treinadorBD)
+
+        db.close()
+    }
 
     fun consegueInserirJogador() {
         val db = getWritableDatabase()
