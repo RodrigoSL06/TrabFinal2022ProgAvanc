@@ -308,4 +308,29 @@ class BaseDadosTeste {
         db.close()
     }
 
+    @Test
+    fun consegueLerLocalidade() {
+        val db = getWritableDatabase()
+
+        val localidade = Localidade("Aventura")
+        insereLocalidade(db, localidade)
+
+        val cursor = TabelaBDLocalidade(db).query(
+            TabelaBDLocalidade.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${localidade.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val categoriaBD = Localidade.fromCursor(cursor)
+        assertEquals(localidade, categoriaBD)
+
+        db.close()
+    }
+
 }

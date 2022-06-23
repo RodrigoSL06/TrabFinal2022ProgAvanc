@@ -13,6 +13,7 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     }
 
 
+
     companion object {
         const val NOME_TABELA = "Equipa"
 

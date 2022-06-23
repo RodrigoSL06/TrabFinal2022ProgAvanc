@@ -117,7 +117,30 @@ class ContentProviderFutsal : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.readableDatabase
+
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>?
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)) {
+            URI_EQUIPA -> TabelaBDEquipa(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_JOGADOR -> TabelaBDJogador(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_LOCALIDADE -> TabelaBDLocalidade(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_TREINADOR -> TabelaBDJogador(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_EQUIPA_ESPECIFICA -> TabelaBDEquipa(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_JOGADOR_ESPECIFICO -> TabelaBDJogador(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_LOCALIDADE_ESPECIFICO -> TabelaBDLocalidade(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_TREINADOR_ESPECIFICO -> TabelaBDTreinador(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            else -> null
+        }
+
+        db.close()
+
+        return cursor
     }
 
     /**
