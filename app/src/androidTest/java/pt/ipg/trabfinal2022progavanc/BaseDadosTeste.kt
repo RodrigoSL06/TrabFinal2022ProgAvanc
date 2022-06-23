@@ -189,6 +189,8 @@ class BaseDadosTeste {
         db.close()
     }
 
+    
+
     fun consegueInserirJogador() {
         val db = getWritableDatabase()
 
@@ -256,6 +258,39 @@ class BaseDadosTeste {
         db.close()
     }
 
+    @Test
+    fun consegueLerJogador() {
+        val db = getWritableDatabase()
+
+        val equipa = Equipa("Tondela","Viseu","11","Antonio")
+        insereEquipa(db, equipa)
+
+        val jogador = Jogador(
+            nome = "Lucas",
+            ncamisola = "2",
+            equipa = "Tondela",
+            data_nascimento = Date(1993 - 1900, 5, 11),
+            telemovel = "912500047")
+        insereJogador(db,jogador)
+
+        val cursor = TabelaBDJogador(db).query(
+            TabelaBDJogador.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${jogador.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val jogadorBD = Jogador.fromCursor(cursor)
+        assertEquals(jogador, jogadorBD)
+
+        db.close()
+    }
+
     fun consegueInserirLocalidade() {
         val db = getWritableDatabase()
 
@@ -312,7 +347,7 @@ class BaseDadosTeste {
     fun consegueLerLocalidade() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Aventura")
+        val localidade = Localidade("Beja")
         insereLocalidade(db, localidade)
 
         val cursor = TabelaBDLocalidade(db).query(
