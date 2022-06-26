@@ -20,11 +20,11 @@ data class Localidade(
     companion object {
         fun fromCursor(cursor: Cursor): Localidade {
 
-            val colNome = cursor.getColumnIndex(TabelaBDLocalidade.CAMPO_NOME)
-            val colId = cursor.getColumnIndex(BaseColumns._ID)
+            val colIdLocalidade = cursor.getColumnIndex(BaseColumns._ID)
+            val colNomeLocalidade = cursor.getColumnIndex(TabelaBDLocalidade.CAMPO_NOME)
 
-            val nome = cursor.getString(colNome)
-            val id = cursor.getLong(colId)
+            val id = cursor.getLong(colIdLocalidade)
+            val nome = cursor.getString(colNomeLocalidade)
 
             return Localidade(nome, id)
         }

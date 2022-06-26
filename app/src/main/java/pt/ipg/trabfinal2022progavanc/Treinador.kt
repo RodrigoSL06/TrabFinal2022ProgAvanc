@@ -7,8 +7,8 @@ import java.util.*
 
 data class Treinador(
     var nome: String,
-    var equipa: String,
-    var data_nascimento: Date,
+    var equipa: Equipa,
+    var data_nascimento: String,
     var telemovel: String,
     var id: Long = -1,
 ) {
@@ -16,8 +16,8 @@ data class Treinador(
         val valores = ContentValues()
 
         valores.put(TabelaBDTreinador.CAMPO_NOME, nome)
-        valores.put(TabelaBDTreinador.CAMPO_EQUIPA, equipa)
-        valores.put(TabelaBDTreinador.CAMPO_DATA_NASCIMENTO, data_nascimento.toString())
+        valores.put(TabelaBDTreinador.CAMPO_EQUIPA_ID, equipa.id)
+        valores.put(TabelaBDTreinador.CAMPO_DATA_NASCIMENTO, data_nascimento)
         valores.put(TabelaBDTreinador.CAMPO_TELEMOVEL, telemovel)
 
         return valores
@@ -27,18 +27,22 @@ data class Treinador(
         fun fromCursor(cursor: Cursor): Treinador {
 
             val colNome = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_NOME)
-            val colEquipa = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_EQUIPA)
+            val colIdEquipa = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_EQUIPA_ID)
+            val colNomeEquipa = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_NOME)
             val colDataNascimento = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_DATA_NASCIMENTO)
             val colTelemovel = cursor.getColumnIndex(TabelaBDTreinador.CAMPO_TELEMOVEL)
             val colId = cursor.getColumnIndex(BaseColumns._ID)
 
             val nome = cursor.getString(colNome)
-            val equipa = cursor.getString(colEquipa)
+            val IdEquipa = cursor.getLong(colIdEquipa)
+            val NomeEquipa = cursor.getString(colNomeEquipa)
             val dataNascimento = cursor.getString(colDataNascimento)
             val telemovel = cursor.getString(colTelemovel)
             val id = cursor.getLong(colId)
 
-            return Treinador(nome, equipa, Date(dataNascimento), telemovel, id )
+            val equipa = Equipa(NomeEquipa, IdEquipa)
+
+            return Treinador(nome, equipa, dataNascimento, telemovel, id )
 
         }
     }

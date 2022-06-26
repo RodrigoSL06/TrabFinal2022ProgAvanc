@@ -7,18 +7,14 @@ import java.util.*
 
 data class Equipa(
     var nome: String,
-    var localidade: String,
-    var njogador: String,
-    var treinador: String,
+    var localidade: Localidade,
     var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 
         valores.put(TabelaBDEquipa.CAMPO_NOME, nome)
-        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE, localidade)
-        valores.put(TabelaBDEquipa.CAMPO_NUM_JOGADORES, njogador)
-        valores.put(TabelaBDEquipa.CAMPO_TREINADOR, treinador)
+        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade.id)
 
         return valores
     }
@@ -27,18 +23,19 @@ data class Equipa(
         fun fromCursor(cursor: Cursor): Equipa {
 
             val colNome = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_NOME)
-            val colLocalidade = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_LOCALIDADE)
-            val colNjogador = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_NUM_JOGADORES)
-            val colTreinador = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_TREINADOR)
+            val colIDLocalidade = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_LOCALIDADE_ID)
+            val colNomeLocalidade = cursor.getColumnIndex(TabelaBDLocalidade.CAMPO_NOME)
             val colId = cursor.getColumnIndex(BaseColumns._ID)
 
             val nome = cursor.getString(colNome)
-            val localidade = cursor.getString(colLocalidade)
-            val nJogador = cursor.getString(colNjogador)
-            val treinador = cursor.getString(colTreinador)
+            val IdLocalidade = cursor.getLong(colIDLocalidade)
+            val NomeLocalidade = cursor.getString(colNomeLocalidade)
             val id = cursor.getLong(colId)
 
-            return Equipa(nome, localidade, nJogador, treinador, id)
+            val localidade = Localidade(NomeLocalidade, IdLocalidade)
+
+
+            return Equipa(nome, localidade, id)
         }
     }
 }

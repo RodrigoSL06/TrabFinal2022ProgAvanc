@@ -9,21 +9,31 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
             "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE TEXT NOT NULL, $CAMPO_NUM_JOGADORES INTEGER NOT NULL, $CAMPO_TREINADOR TEXT NOT NULL )")
+                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE_ID INTEGER NOT NULL, FOREIGN KEY ($CAMPO_LOCALIDADE_ID) REFERENCES ${TabelaBDLocalidade.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
+    override fun query(
+        columns: Array<String>,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
+    ): Cursor {
+        val queryBuilder = SQLiteQueryBuilder()
+        queryBuilder.tables = "$NOME_TABELA INNER JOIN ${TabelaBDLocalidade.NOME_TABELA} ON ${TabelaBDLocalidade.NOME_TABELA}.${BaseColumns._ID} = $CAMPO_LOCALIDADE_ID"
 
+        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+    }
 
     companion object {
         const val NOME_TABELA = "Equipa"
 
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
-        const val CAMPO_LOCALIDADE = "localidade"
-        const val CAMPO_NUM_JOGADORES = "num jogadores"
-        const val CAMPO_TREINADOR = " treinador"
+        const val CAMPO_LOCALIDADE_ID = "localidadeID"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_LOCALIDADE, CAMPO_NUM_JOGADORES, CAMPO_TREINADOR)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_LOCALIDADE_ID, TabelaBDLocalidade.CAMPO_NOME)
     }
 }
 
