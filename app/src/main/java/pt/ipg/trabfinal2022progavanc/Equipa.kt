@@ -7,14 +7,14 @@ import java.util.*
 
 data class Equipa(
     var nome: String,
-    var localidade: Localidade,
+    var localidade: Long,
     var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 
         valores.put(TabelaBDEquipa.CAMPO_NOME, nome)
-        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade.id)
+        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade)
 
         return valores
     }
@@ -34,8 +34,7 @@ data class Equipa(
 
             val localidade = Localidade(NomeLocalidade, IdLocalidade)
 
-
-            return Equipa(nome, localidade, id)
+            return Equipa(nome, localidade.id, id)
         }
     }
 }

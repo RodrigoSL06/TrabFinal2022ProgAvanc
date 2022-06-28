@@ -9,8 +9,8 @@ class TabelaBDJogador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
             "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_NCAMISOLA INTEGER NOT NULL, $CAMPO_EQUIPA_ID INTEGER NOT NULL, FOREIGN KEY ($CAMPO_EQUIPA_ID) REFERENCES ${TabelaBDEquipa.NOME_TABELA} ON DELETE RESTRICT," +
-                    "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_TELEMOVEL INTERGER NOT NULL)")
+                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_NCAMISOLA INTEGER NOT NULL, $CAMPO_EQUIPA_ID INTEGER NOT NULL, " +
+                    "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_TELEMOVEL INTERGER NOT NULL, FOREIGN KEY ($CAMPO_EQUIPA_ID) REFERENCES ${TabelaBDEquipa.NOME_TABELA} (${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
     override fun query(
@@ -21,10 +21,45 @@ class TabelaBDJogador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
         having: String?,
         orderBy: String?
     ): Cursor {
-        val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME_TABELA INNER JOIN ${TabelaBDEquipa.NOME_TABELA} ON ${TabelaBDEquipa.NOME_TABELA}.${BaseColumns._ID} = $CAMPO_EQUIPA_ID"
+        val ultimaColuna = columns.size - 1
 
-        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+        var posColNomeEquipa = -1 // -1 indica que a coluna não foi pedida
+        for (i in 0..ultimaColuna) {
+            if (columns[i] == TabelaBDTreinador.CAMPO_EXTERNO_NOME_EQUIPA) {
+                posColNomeEquipa = i
+                break
+            }
+        }
+
+        if (posColNomeEquipa == -1) {
+            return db.query(TabelaBDTreinador.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        }
+
+        var colunas = ""
+        for (i in 0..ultimaColuna) {
+            if (i > 0) colunas += ","
+
+            colunas += if (i == posColNomeEquipa) {
+                "${TabelaBDEquipa.NOME_TABELA}.${TabelaBDEquipa.CAMPO_NOME} AS ${TabelaBDTreinador.CAMPO_EXTERNO_NOME_EQUIPA}"
+            } else {
+                "${TabelaBDTreinador.NOME_TABELA}.${columns[i]}"
+            }
+        }
+
+        val tabelas = "${TabelaBDTreinador.NOME_TABELA} INNER JOIN ${TabelaBDEquipa.NOME_TABELA} ON ${TabelaBDEquipa.NOME_TABELA}.${BaseColumns._ID}=${TabelaBDTreinador.CAMPO_EQUIPA_ID}"
+
+        var sql = "SELECT $colunas FROM $tabelas"
+
+        if (selection != null) sql += " WHERE $selection"
+
+        if (groupBy != null) {
+            sql += " GROUP BY $groupBy"
+            if (having != null) " HAVING $having"
+        }
+
+        if (orderBy != null) sql += " ORDER BY $orderBy"
+
+        return db.rawQuery(sql, selectionArgs)
     }
 
     companion object {

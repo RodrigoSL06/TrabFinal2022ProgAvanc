@@ -66,7 +66,10 @@ class BaseDadosTeste {
     fun consegueInserirLocalidade() {
         val db = getWritableDatabase()
 
-        insereLocalidade(db, Localidade("Aveiro"))
+        val localidade = Localidade("Aveiro")
+        insereLocalidade(db, localidade)
+
+        assertEquals(-1, localidade)
 
         db.close()
     }
@@ -77,8 +80,10 @@ class BaseDadosTeste {
         val localidade = Localidade("Barcelos")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Gil Vicente", localidade)
+        val equipa = Equipa("Gil Vicente", localidade.id)
         insereEquipa(db, equipa)
+
+        assertEquals(-1, equipa)
 
         db.close()
     }
@@ -89,12 +94,13 @@ class BaseDadosTeste {
         val localidade = Localidade("Lisboa")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Sporting", localidade )
+        val equipa = Equipa("Sporting", localidade.id )
         insereEquipa(db, equipa)
 
-        val treinador = Treinador( "Ruben", equipa, "23/03/1983","925776554")
+        val treinador = Treinador( "Ruben",equipa.id, equipa.nome,"935874569")
         insereTreinador(db, treinador)
 
+        assertEquals(-1, treinador)
 
         db.close()
     }
@@ -105,10 +111,10 @@ class BaseDadosTeste {
         val localidade = Localidade("Lisboa")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Sporting", localidade )
+        val equipa = Equipa("Sporting", localidade.id )
         insereEquipa(db, equipa)
 
-        val jogador = Jogador( "Ruben", "7", equipa, "12/2/1993","924563456")
+        val jogador = Jogador( "Ruben", "7", equipa.id, equipa.nome,"12/2/1993", "924563456")
         insereJogador(db, jogador)
 
         db.close()
@@ -144,11 +150,11 @@ class BaseDadosTeste {
         val localidadeLisboa = Localidade("Lisboa")
         insereLocalidade(db, localidadeLisboa)
 
-        val equipa = Equipa("TESTE", localidadeGuarda)
-        insereLocalidade(db, equipa)
+        val equipa = Equipa("TESTE", localidadeGuarda.id)
+        insereEquipa(db, equipa)
 
         equipa.nome= "A rapariga no comboio"
-        equipa.localidade = localidadeLisboa
+        equipa.localidade = localidadeLisboa.id
 
         val registosAlterados = TabelaBDEquipa(db).update(
             equipa.toContentValues(),
@@ -166,17 +172,23 @@ class BaseDadosTeste {
 
         val db = getWritableDatabase()
 
-        val equipaSporting = Equipa("Ruben", )
+        val localidadeGuarda = Localidade("Guarda")
+        insereLocalidade(db, localidadeGuarda)
+
+        val localidadeLisboa = Localidade("Lisboa")
+        insereLocalidade(db, localidadeLisboa)
+
+        val equipaSporting = Equipa("Sporting", localidadeLisboa.id, )
         insereEquipa(db, equipaSporting)
 
-        val equipaBenfica = Equipa("Mistério",)
+        val equipaBenfica = Equipa("Benfica", localidadeLisboa.id)
         insereEquipa(db, equipaBenfica)
 
-        val treinador = Treinador("TESTE", equipaSporting, "23/07/1990","965874514")
+        val treinador = Treinador("Manel", equipaSporting.id, "23/07/1990","965874514")
         insereTreinador(db, treinador)
 
         treinador.nome = "A rapariga no comboio"
-        treinador.equipa = equipaBenfica
+        treinador.idEquipa = equipaBenfica.id
         treinador.data_nascimento = "01/01/1987"
         treinador.telemovel = "925668090"
 
@@ -196,18 +208,24 @@ class BaseDadosTeste {
 
         val db = getWritableDatabase()
 
-        val equipaPorto = Equipa("Ruben", )
+        val localidadeGuarda = Localidade("Guarda")
+        insereLocalidade(db, localidadeGuarda)
+
+        val localidadeLisboa = Localidade("Lisboa")
+        insereLocalidade(db, localidadeLisboa)
+
+        val equipaPorto = Equipa("Porto", localidadeLisboa.id)
         insereEquipa(db, equipaPorto)
 
-        val equipaBraga = Equipa("Mistério",)
+        val equipaBraga = Equipa("Braga", localidadeLisboa.id)
         insereEquipa(db, equipaBraga)
 
-        val jogador = Jogador("TESTE", "4", equipaPorto, "23/07/1990","965874514")
+        val jogador = Jogador("Ze", "4", equipaPorto.id, "Sporting","23/07/1990", "965874514")
         insereJogador(db, jogador)
 
         jogador.nome = "A rapariga no comboio"
         jogador.ncamisola = "11"
-        jogador.equipa = equipaBraga
+        jogador.idEquipa = equipaBraga.id
         jogador.data_nascimento = "01/01/1987"
         jogador.telemovel = "925668090"
 
@@ -247,7 +265,7 @@ class BaseDadosTeste {
         val localidade = Localidade("Viseu")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("TESTE", localidade)
+        val equipa = Equipa("TESTE", localidade.id)
         insereEquipa(db, equipa)
 
         val registosEliminados = TabelaBDEquipa(db).delete(
@@ -264,10 +282,13 @@ class BaseDadosTeste {
     fun consegueEliminarTreinador() {
         val db = getWritableDatabase()
 
-        val equipa = Equipa("Boavista", "")
+        val localidade = Localidade("Viseu")
+        insereLocalidade(db, localidade)
+
+        val equipa = Equipa("Boavista", localidade.id)
         insereEquipa(db, equipa)
 
-        val treinador = Treinador("TESTE", equipa, "13/02/1991","925887090")
+        val treinador = Treinador("TESTE", equipa.id, "13/02/1991","925887090")
         insereTreinador(db, treinador)
 
         val registosEliminados = TabelaBDTreinador(db).delete(
@@ -284,10 +305,13 @@ class BaseDadosTeste {
     fun consegueEliminarJogador() {
         val db = getWritableDatabase()
 
-        val equipa = Equipa("Boavista", "")
+        val localidade = Localidade("Viseu")
+        insereLocalidade(db, localidade)
+
+        val equipa = Equipa("Boavista", localidade.id)
         insereEquipa(db, equipa)
 
-        val jogador = Jogador("TESTE","4", equipa, "14/03/1992", "924556769")
+        val jogador = Jogador("TESTE","4", equipa.id, "Boavista", "14/03/1992", "924556769")
         insereJogador(db, jogador)
 
         val registosEliminados = TabelaBDJogador(db).delete(
@@ -332,7 +356,7 @@ class BaseDadosTeste {
         val localidade = Localidade("Porto")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("FCPorto", localidade)
+        val equipa = Equipa("FCPorto", localidade.id)
         insereEquipa(db, equipa)
 
         val cursor = TabelaBDEquipa(db).query(
@@ -357,10 +381,13 @@ class BaseDadosTeste {
     fun consegueLerTreinador() {
         val db = getWritableDatabase()
 
-        val equipa = Equipa("Culinária", "")
+        val localidade = Localidade("Viseu")
+        insereLocalidade(db, localidade)
+
+        val equipa = Equipa("Tondela", localidade.id)
         insereEquipa(db, equipa)
 
-        val treinador = Treinador("As Delícias de Ella", equipa, "15/04/1998","914556768")
+        val treinador = Treinador("Antonio", equipa.id, "15/04/1998","914556768")
         insereTreinador(db, treinador)
 
         val cursor = TabelaBDTreinador(db).query(
@@ -385,10 +412,13 @@ class BaseDadosTeste {
     fun consegueLerJogador() {
         val db = getWritableDatabase()
 
-        val equipa = Equipa("Culinária", "")
+        val localidade = Localidade("Viseu")
+        insereLocalidade(db, localidade)
+
+        val equipa = Equipa("Tondela", localidade.id)
         insereEquipa(db, equipa)
 
-        val jogador = Jogador("As Delícias de Ella", "15", equipa, "11/04/1996","914500068")
+        val jogador = Jogador("Pedro", "15", equipa.id, "Tondela","11/04/1996", "914500068")
         insereJogador(db, jogador)
 
         val cursor = TabelaBDJogador(db).query(
@@ -408,6 +438,5 @@ class BaseDadosTeste {
 
         db.close()
     }
-
 }
 

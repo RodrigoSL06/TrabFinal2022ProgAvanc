@@ -10,7 +10,8 @@ data class Jogador(
 
     var nome: String,
     var ncamisola: String,
-    var equipa: Equipa,
+    var idEquipa: Long,
+    var nomeEquipa: String ?= null,
     var data_nascimento: String,
     var telemovel: String,
     var id: Long = -1,
@@ -21,7 +22,7 @@ data class Jogador(
 
         valores.put(TabelaBDJogador.CAMPO_NOME, nome)
         valores.put(TabelaBDJogador.CAMPO_NCAMISOLA, ncamisola)
-        valores.put(TabelaBDJogador.CAMPO_EQUIPA_ID, equipa.id)
+        valores.put(TabelaBDJogador.CAMPO_EQUIPA_ID, idEquipa)
         valores.put(TabelaBDJogador.CAMPO_DATA_NASCIMENTO, data_nascimento)
         valores.put(TabelaBDJogador.CAMPO_TELEMOVEL, telemovel)
 
@@ -47,9 +48,8 @@ data class Jogador(
             val telemovel = cursor.getString(colTelemovel)
             val id = cursor.getLong(colId)
 
-            val equipa = Equipa(NomeEquipa, IdEquipa)
 
-            return Jogador(nome, ncamisola, equipa, dataNascimento, telemovel, id)
+            return Jogador(nome, ncamisola, IdEquipa,NomeEquipa, dataNascimento, telemovel, id)
         }
     }
 }

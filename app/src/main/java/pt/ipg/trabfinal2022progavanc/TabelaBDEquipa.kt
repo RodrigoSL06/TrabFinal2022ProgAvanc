@@ -20,10 +20,7 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
         having: String?,
         orderBy: String?
     ): Cursor {
-        val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME_TABELA INNER JOIN ${TabelaBDLocalidade.NOME_TABELA} ON ${TabelaBDLocalidade.NOME_TABELA}.${BaseColumns._ID} = $CAMPO_LOCALIDADE_ID"
-
-        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
     companion object {
