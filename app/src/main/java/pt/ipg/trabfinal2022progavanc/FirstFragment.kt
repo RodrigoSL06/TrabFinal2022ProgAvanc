@@ -38,7 +38,7 @@ class FirstFragment : Fragment() {
         }
 
         binding.buttonTeam.setOnClickListener{
-            findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
+            findNavController().navigate(R.id.action_FirstFragment_to_listarEquipasFragment)
         }
 
         binding.buttonPlayer.setOnClickListener{
