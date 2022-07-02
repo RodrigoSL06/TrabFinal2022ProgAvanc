@@ -97,7 +97,7 @@ class BaseDadosTeste {
         val equipa = Equipa("Sporting", localidade.id )
         insereEquipa(db, equipa)
 
-        val treinador = Treinador("Rui", equipa.id, equipa.nome, "936583413")
+        val treinador = Treinador("Rui", equipa.id, equipa.nomeEquipa, "936583413")
         treinador.id = TabelaBDTreinador(db).insert(treinador.toContentValues())
 
         assertNotEquals(-1, treinador.id)

@@ -6,13 +6,13 @@ import android.provider.BaseColumns
 import java.util.*
 
 data class Localidade(
-    var nome: String,
+    var nomeLocalidade: String,
     var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 
-        valores.put(TabelaBDJogador.CAMPO_NOME, nome)
+        valores.put(TabelaBDJogador.CAMPO_NOME, nomeLocalidade)
 
         return valores
     }
