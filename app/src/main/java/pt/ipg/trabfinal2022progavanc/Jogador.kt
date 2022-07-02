@@ -11,7 +11,7 @@ data class Jogador(
     var nome: String,
     var ncamisola: String,
     var idEquipa: Long,
-    var nomeEquipa: String ?= null,
+    var nomeEquipa: String,
     var data_nascimento: String,
     var telemovel: String,
     var id: Long = -1,

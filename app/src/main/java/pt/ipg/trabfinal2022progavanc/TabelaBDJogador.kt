@@ -8,12 +8,13 @@ import android.provider.BaseColumns
 class TabelaBDJogador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
-            "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "$CAMPO_NOME TEXT NOT NULL, $CAMPO_NCAMISOLA INTEGER NOT NULL, $CAMPO_EQUIPA_ID INTEGER NOT NULL, " +
-                    "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_TELEMOVEL INTERGER NOT NULL, FOREIGN KEY ($CAMPO_EQUIPA_ID) REFERENCES ${TabelaBDEquipa.NOME_TABELA} (${BaseColumns._ID}) ON DELETE RESTRICT)")
+                    "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_TELEMOVEL TEXT NOT NULL, " +
+                    "FOREIGN KEY ($CAMPO_EQUIPA_ID) REFERENCES ${TabelaBDEquipa.NOME_TABELA} (${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
-    override fun query(
+    /* override fun query(
         columns: Array<String>,
         selection: String?,
         selectionArgs: Array<String>?,
@@ -61,17 +62,18 @@ class TabelaBDJogador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
 
         return db.rawQuery(sql, selectionArgs)
     }
+    */
 
     companion object {
         const val NOME_TABELA = "Jogador"
 
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
-        const val CAMPO_NCAMISOLA = "num camisola"
+        const val CAMPO_NCAMISOLA = "numCamisola"
         const val CAMPO_EQUIPA_ID = "equipaID"
-        const val CAMPO_DATA_NASCIMENTO = "data nascimento"
+        const val CAMPO_DATA_NASCIMENTO = "dataNascimento"
         const val CAMPO_TELEMOVEL = "telemovel"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_NCAMISOLA, CAMPO_EQUIPA_ID, TabelaBDEquipa.CAMPO_NOME, CAMPO_DATA_NASCIMENTO, CAMPO_TELEMOVEL)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_NCAMISOLA, CAMPO_EQUIPA_ID, CAMPO_DATA_NASCIMENTO, CAMPO_TELEMOVEL)
     }
 }

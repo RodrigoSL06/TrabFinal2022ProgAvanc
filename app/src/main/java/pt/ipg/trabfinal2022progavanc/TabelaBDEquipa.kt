@@ -8,8 +8,9 @@ import android.provider.BaseColumns
 class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
-            "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE_ID INTEGER NOT NULL, FOREIGN KEY ($CAMPO_LOCALIDADE_ID) REFERENCES ${TabelaBDLocalidade.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+            "CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE_ID INTEGER NOT NULL, " +
+                    "FOREIGN KEY ($CAMPO_LOCALIDADE_ID) REFERENCES ${TabelaBDLocalidade.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
     override fun query(

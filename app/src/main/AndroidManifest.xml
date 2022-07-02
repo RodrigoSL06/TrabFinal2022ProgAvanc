@@ -8,28 +8,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabFinal2022ProgAvanc">
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.TrabFinal2022ProgAvanc.NoActionBar" />
-        <activity
-            android:name=".MainActivity5"
-            android:exported="false"
-            android:label="@string/title_activity_main5" />
-        <activity
-            android:name=".MainActivity4"
-            android:exported="false"
-            android:label="@string/title_activity_main4" />
-        <activity
-            android:name=".MainActivity3"
-            android:exported="false"
-            android:label="@string/title_activity_main3" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TrabFinal2022ProgAvanc.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,9 +27,6 @@
             android:name=".ContentProviderFutsal"
             android:exported="false" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
