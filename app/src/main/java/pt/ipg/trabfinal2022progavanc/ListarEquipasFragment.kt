@@ -22,7 +22,7 @@ import pt.ipg.trabfinal2022progavanc.databinding.FragmentListarEquipasBinding
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class ListarVinhosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class ListarEquipasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     var vinhoSeleccionado : Equipa? = null
         get() = field
         set(value) {

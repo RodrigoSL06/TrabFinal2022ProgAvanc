@@ -47,4 +47,6 @@
     <string name="Save">Save</string>
     <string name="Cancel">Cancel</string>
     <string name="Savee">Save</string>
+    <string name="TeamName">Team Name</string>
+    <string name="LocalityName">Locality Name</string>
 </resources>
