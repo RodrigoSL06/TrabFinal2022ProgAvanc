@@ -132,7 +132,7 @@ class EditarEquipaFragment : Fragment(){
     }
 
     private fun voltaListaEquipas() {
-        findNavController().navigate(R.id.action_editarEquipaFragment_to_SecondFragment)
+        findNavController().navigate(R.id.action_editarEquipaFragment_to_listarEquipasFragment)
     }
 
 

@@ -11,16 +11,75 @@
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
-            android:id="@+id/action_firstFragment_to_fragmentListaJogadores"
-            app:destination="@id/fragmentListaJogadores" />
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_listarEquipasFragment"
+            app:destination="@id/listarEquipasFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentListaJogadores"
-        android:name="pt.ipg.trabfinal2022progavanc.FragmentListaJogadores"
-        android:label="fragment_lista_jogadores"
-        tools:layout="@layout/fragment_lista_jogadores" >
+        android:id="@+id/secondFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" >
         <action
-            android:id="@+id/action_fragmentListaJogadores_to_firstFragment"
+            android:id="@+id/action_secondFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
+        <action
+            android:id="@+id/action_secondFragment_to_editarLocalidadeFragment"
+            app:destination="@id/editarLocalidadeFragment" />
+        <action
+            android:id="@+id/action_secondFragment_to_eliminarLocalidadeFragment"
+            app:destination="@id/eliminarLocalidadeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listarEquipasFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.ListarEquipasFragment"
+        android:label="fragment_listar_equipas"
+        tools:layout="@layout/fragment_listar_equipas" >
+        <action
+            android:id="@+id/action_listarEquipasFragment_to_firstFragment"
+            app:destination="@id/firstFragment" />
+        <action
+            android:id="@+id/action_listarEquipasFragment_to_editarEquipaFragment"
+            app:destination="@id/editarEquipaFragment" />
+        <action
+            android:id="@+id/action_listarEquipasFragment_to_eliminarEquipaFragment"
+            app:destination="@id/eliminarEquipaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarEquipaFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EditarEquipaFragment"
+        android:label="fragment_editar_equipa"
+        tools:layout="@layout/fragment_editar_equipa" >
+        <action
+            android:id="@+id/action_editarEquipaFragment_to_listarEquipasFragment"
+            app:destination="@id/listarEquipasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarEquipaFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EliminarEquipaFragment"
+        android:label="fragment_eliminar_localidade"
+        tools:layout="@layout/fragment_eliminar_localidade" >
+        <action
+            android:id="@+id/action_eliminarEquipaFragment_to_listarEquipasFragment"
+            app:destination="@id/listarEquipasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarLocalidadeFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EditarLocalidadeFragment"
+        android:label="fragment_editar_localidade"
+        tools:layout="@layout/fragment_editar_localidade" >
+        <action
+            android:id="@+id/action_editarLocalidadeFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarLocalidadeFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EliminarLocalidadeFragment"
+        android:label="EliminarLocalidadeFragment" >
+        <action
+            android:id="@+id/action_eliminarLocalidadeFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
     </fragment>
 </navigation>

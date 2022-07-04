@@ -49,7 +49,7 @@ class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_CLIENTES, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_LOCALIDADE, null, this)
 
         adapterLocalidade = AdapterLocalidade(this)
         binding.recyclerViewLocalidade.adapter = adapterLocalidade
@@ -150,19 +150,19 @@ class SecondFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = SecondFragmentDirections.actionSecondFragmentToEditarClienteFragment()
+                val acao = SecondFragmentDirections.actionSecondFragmentToEditarLocalidadeFragment()
                 findNavController().navigate(acao)
                 (activity as MainActivity).atualizaTitulo(R.string.insere_localidade)
                 true
             }
             R.id.action_alterar -> {
-                val acao = SecondFragmentDirections.actionSecondFragmentToEditarClienteFragment(localidadeSelecionado)
+                val acao = SecondFragmentDirections.actionSecondFragmentEditarLocalidadeFragment(localidadeSelecionado)
                 findNavController().navigate(acao)
                 (activity as MainActivity).atualizaTitulo(R.string.edit_localidade)
                 true
             }
             R.id.action_guardar -> {
-                val acao = SecondFragmentDirections.actionSecondFragmentToEliminarClienteFragment(localidadeSelecionado!!)
+                val acao = SecondFragmentDirections.actionSecondFragmentToEliminarLocalidadeFragment(localidadeSelecionado!!)
                 findNavController().navigate(acao)
                 (activity as MainActivity).atualizaTitulo(R.string.delete_localidade)
                 true

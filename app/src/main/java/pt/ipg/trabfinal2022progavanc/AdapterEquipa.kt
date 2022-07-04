@@ -35,7 +35,7 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
                 field = value
 
                 textViewNomeEquipa.text = equipa?.nomeEquipa ?: ""
-                textViewLocal.text = equipa?.localidade ?: ""
+                textViewLocal.text = equipa?. ?: ""
 
             }
 
@@ -47,7 +47,7 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
-            fragment.equipaSelecionado = equipa
+            fragment.equipaSeleccionado = equipa
         }
 
         private fun desseleciona() {
@@ -78,11 +78,10 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    //override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLivro {
-    // val itemCliente = fragment.layoutInflater.inflate(R.layout.activity_client_update_delete, parent, false)
-    //return ViewHolderLivro(itemCliente)
-
-    //}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderEquipa {
+        val itemEquipa = fragment.layoutInflater.inflate(R.layout.item_localidade, parent, false)
+        return ViewHolderEquipa(itemEquipa)
+    }
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -106,8 +105,8 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderEquipa, position: Int) {
-        val itemVinho = fragment.layoutInflater.inflate(R.layout.item_equipa, parent, false)
-        return ViewHolderEquipa(itemEquipa)
+        cursor!!.moveToPosition(position)
+        holder.equipa = Equipa.fromCursor(cursor!!)
     }
 
     /**
@@ -119,10 +118,5 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
         if(cursor == null) return 0
 
         return cursor!!.count
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderEquipa {
-        val itemEquipa = fragment.layoutInflater.inflate(R.layout.item_localidade, parent, false)
-        return ViewHolderEquipa(itemEquipa)
     }
 }

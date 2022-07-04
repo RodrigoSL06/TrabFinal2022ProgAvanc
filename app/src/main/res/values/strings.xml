@@ -49,4 +49,7 @@
     <string name="Savee">Save</string>
     <string name="TeamName">Team Name</string>
     <string name="LocalityName">Locality Name</string>
+    <string name="DeleteEquipa">Delete Equipa</string>
+    <string name="TeammName">Team \'s Name</string>
+    <string name="DeleteLocality">Delete Locality</string>
 </resources>

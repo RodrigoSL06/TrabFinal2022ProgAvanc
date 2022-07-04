@@ -356,6 +356,7 @@ class BaseDadosTeste {
 
         db.close()
     }
+    */
 
     @Test
     fun consegueLerEquipa() {
@@ -385,6 +386,7 @@ class BaseDadosTeste {
         db.close()
     }
 
+    /*
     @Test
     fun consegueLerTreinador() {
         val db = getWritableDatabase()

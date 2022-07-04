@@ -122,7 +122,7 @@ class EditarLocalidadeFragment : Fragment(){
     }
 
     private fun voltaListaLocalidades() {
-        findNavController().navigate(R.id.action_editarLocalidadeFragment_to_SecondFragment)
+        findNavController().navigate(R.id.action_editarLocalidadeFragment_to_secondFragment)
     }
 
 

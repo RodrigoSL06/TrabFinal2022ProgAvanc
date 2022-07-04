@@ -34,20 +34,21 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLocality.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
 
         binding.buttonTeam.setOnClickListener{
-            findNavController().navigate(R.id.action_FirstFragment_to_listarEquipasFragment)
+            findNavController().navigate(R.id.action_firstFragment_to_listarEquipasFragment)
         }
 
-        binding.buttonPlayer.setOnClickListener{
+       /* binding.buttonPlayer.setOnClickListener{
             findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
         }
 
         binding.buttonCoach.setOnClickListener{
             findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
         }
+        */
 
 
         val activity = activity as MainActivity
