@@ -428,7 +428,7 @@ class BaseDadosTeste {
         val equipa = Equipa("Tondela", localidade)
         insereEquipa(db, equipa)
 
-        val jogador = Jogador("Pedro", "15", equipa.id, "Tondela","11/04/1996", "914500068")
+        val jogador = Jogador("Pedro", "15", equipa.id, "Tondela", "11/04/1996", "914500068")
         insereJogador(db, jogador)
 
         val cursor = TabelaBDJogador(db).query(
