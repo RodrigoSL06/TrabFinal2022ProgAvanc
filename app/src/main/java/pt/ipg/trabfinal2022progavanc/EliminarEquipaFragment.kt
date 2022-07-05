@@ -49,7 +49,7 @@ class EliminarEquipaFragment : Fragment() {
         equipa = EliminarEquipaFragmentArgs.fromBundle(arguments!!).equipa
 
         binding.textViewNome.text = equipa.nomeEquipa
-        binding.textViewContacto.text = equipa.fgdsd
+        binding.textViewContacto.text = equipa.localidade.nomeLocalidade
 
     }
 

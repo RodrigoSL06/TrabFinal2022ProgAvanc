@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/DeleteEquipa"
+            android:text="@string/DeleteTeam"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/design_default_color_error" />
 
