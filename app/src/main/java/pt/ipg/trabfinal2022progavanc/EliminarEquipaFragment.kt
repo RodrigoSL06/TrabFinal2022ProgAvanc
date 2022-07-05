@@ -49,7 +49,7 @@ class EliminarEquipaFragment : Fragment() {
         equipa = EliminarEquipaFragmentArgs.fromBundle(arguments!!).equipa
 
         binding.textViewNome.text = equipa.nomeEquipa
-        binding.textViewContacto.text = equipa.localidade
+        binding.textViewContacto.text = equipa.fgdsd
 
     }
 
@@ -60,7 +60,7 @@ class EliminarEquipaFragment : Fragment() {
                 true
             }
             R.id.action_cancelar -> {
-                voltaListaLocalidade()
+                voltaListaEquipa()
                 true
             }
             else -> false
@@ -70,8 +70,8 @@ class EliminarEquipaFragment : Fragment() {
         val alertDialog = AlertDialog.Builder(requireContext())
 
         alertDialog.apply {
-            setTitle(R.string.delete_equipa)
-            setMessage(R.string.sure)
+            setTitle(R.string.deleteTeam)
+            setMessage(R.string.confirmdeletion)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
             setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarEquipa() })
             show()
@@ -79,13 +79,13 @@ class EliminarEquipaFragment : Fragment() {
     }
 
     private fun confirmaEliminarEquipa() {
-        val enderecoCliente = Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_EQUIPA, "${equipa.id}")
-        val registosEliminados = requireActivity().contentResolver.delete(enderecoCliente, null, null)
+        val enderecoEquipa = Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_EQUIPA, "${equipa.id}")
+        val registosEliminados = requireActivity().contentResolver.delete(enderecoEquipa, null, null)
 
         if (registosEliminados != 1) {
             Snackbar.make(
                 binding.textViewNome,
-                R.string.erro,
+                R.string.error,
                 Snackbar.LENGTH_INDEFINITE
             ).show()
             return
@@ -96,7 +96,7 @@ class EliminarEquipaFragment : Fragment() {
     }
 
     private fun voltaListaEquipa() {
-        val acao = EliminarEquipaFragmentDirections.action_eliminarEquipaFragment_to_listarEquipasFragment()
+        val acao = EliminarEquipaFragmentDirections.actionEliminarEquipaFragmentToListarEquipasFragment()
         findNavController().navigate(acao)
     }
 }

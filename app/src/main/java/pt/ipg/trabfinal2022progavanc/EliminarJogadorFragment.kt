@@ -11,25 +11,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import pt.ipg.trabfinal2022progavanc.Localidade
+import pt.ipg.trabfinal2022progavanc.Equipa
 import pt.ipg.trabfinal2022progavanc.ContentProviderFutsal
+import pt.ipg.trabfinal2022progavanc.databinding.FragmentEliminarEquipaBinding
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.trabfinal2022progavanc.databinding.FragmentEliminarLocalidadeBinding
+import pt.ipg.trabfinal2022progavanc.databinding.FragmentEliminarJogadorBinding
 
-class EliminarLocalidadeFragment : Fragment() {
-    private var _binding: FragmentEliminarLocalidadeBinding? = null
+
+class EliminarJogadorFragment : Fragment() {
+    private var _binding: FragmentEliminarJogadorBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var localidade: Localidade
+    private lateinit var jogador: Jogador
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentEliminarLocalidadeBinding.inflate(inflater, container, false)
+        _binding = FragmentEliminarJogadorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,56 +47,60 @@ class EliminarLocalidadeFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_elimina
 
-        localidade = EliminarLocalidadeFragmentArgs.fromBundle(arguments!!).localidade
+        jogador = EliminarJogadorFragmentArgs.fromBundle(arguments!!).jogador
 
-        binding.textViewNome.text = localidade.nomeLocalidade
+        binding.textViewNome.text = jogador.nome
+        binding.textViewNumber.text = jogador.ncamisola
+        binding.textViewTeamName.text = jogador.nomeEquipa
+        binding.textViewBirth.text = jogador.dataNascimento
+        binding.textViewPhone.text = jogador.telemovel
 
     }
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_eliminar -> {
-                eliminaLocalidade()
+                eliminaJogador()
                 true
             }
             R.id.action_cancelar -> {
-                voltaListaLocalidade()
+                voltaListaJogador()
                 true
             }
             else -> false
         }
 
-    private fun eliminaEquipa() {
+    private fun eliminaJogador() {
         val alertDialog = AlertDialog.Builder(requireContext())
 
         alertDialog.apply {
-            setTitle(R.string.delete_localidade)
-            setMessage(R.string.sure)
+            setTitle(R.string.deletePlayer)
+            setMessage(R.string.confirmdeletion)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
-            setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarEquipa() })
+            setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarJogador() })
             show()
         }
     }
 
-    private fun confirmaEliminarEquipa() {
-        val enderecoCliente = Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_LOCALIDADE, "${localidade.id}")
-        val registosEliminados = requireActivity().contentResolver.delete(enderecoCliente, null, null)
+    private fun confirmaEliminarJogador() {
+        val enderecoJogador= Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_JOGADORES, "${jogador.id}")
+        val registosEliminados = requireActivity().contentResolver.delete(enderecoJogador, null, null)
 
         if (registosEliminados != 1) {
             Snackbar.make(
                 binding.textViewNome,
-                R.string.erro,
+                R.string.error,
                 Snackbar.LENGTH_INDEFINITE
             ).show()
             return
         }
 
         Toast.makeText(requireContext(), R.string.done, Toast.LENGTH_LONG).show()
-        voltaListaLocalidade()
+        voltaListaJogador()
     }
 
-    private fun voltaListaLocalidade() {
-        val acao = EliminarLocalidadeFragmentDirections.action_eliminarLocalidadeFragment_to_secondFragment()
+    private fun voltaListaJogador() {
+        val acao = EliminarJogadorFragmentDirections.actionEliminarJogadorFragmentToSecondFragment2()
         findNavController().navigate(acao)
     }
 }

@@ -3,18 +3,19 @@ package pt.ipg.trabfinal2022progavanc
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 import java.util.*
 
-data class Equipa(
+data class Equipa( // E como se fosse o vinho
     var nomeEquipa: String,
-    var localidade: Long,
+    var localidade: Localidade, // regiao
     var id: Long = -1,
-) {
+): Serializable {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 
         valores.put(TabelaBDEquipa.CAMPO_NOME, nomeEquipa)
-        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade)
+        valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade.id)
 
         return valores
     }
@@ -34,7 +35,7 @@ data class Equipa(
 
             val localidade = Localidade(NomeLocalidade, IdLocalidade)
 
-            return Equipa(nome, localidade.id, id)
+            return Equipa(nome, localidade , id)
         }
     }
 }

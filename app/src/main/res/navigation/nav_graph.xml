@@ -11,11 +11,11 @@
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
-            android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/secondFragment" />
-        <action
             android:id="@+id/action_firstFragment_to_listarEquipasFragment"
             app:destination="@id/listarEquipasFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
@@ -23,14 +23,14 @@
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
         <action
+            android:id="@+id/action_secondFragment_to_eliminarJogadorFragment2"
+            app:destination="@id/eliminarJogadorFragment" />
+        <action
+            android:id="@+id/action_secondFragment_to_editarJogadorFragment2"
+            app:destination="@id/editarJogadorFragment" />
+        <action
             android:id="@+id/action_secondFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
-        <action
-            android:id="@+id/action_secondFragment_to_editarLocalidadeFragment"
-            app:destination="@id/editarLocalidadeFragment" />
-        <action
-            android:id="@+id/action_secondFragment_to_eliminarLocalidadeFragment"
-            app:destination="@id/eliminarLocalidadeFragment" />
     </fragment>
     <fragment
         android:id="@+id/listarEquipasFragment"
@@ -55,6 +55,11 @@
         <action
             android:id="@+id/action_editarEquipaFragment_to_listarEquipasFragment"
             app:destination="@id/listarEquipasFragment" />
+        <argument
+            android:name="equipa"
+            app:argType="pt.ipg.trabfinal2022progavanc.Equipa"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/eliminarEquipaFragment"
@@ -64,22 +69,34 @@
         <action
             android:id="@+id/action_eliminarEquipaFragment_to_listarEquipasFragment"
             app:destination="@id/listarEquipasFragment" />
+        <argument
+            android:name="equipa"
+            app:argType="pt.ipg.trabfinal2022progavanc.Equipa" />
     </fragment>
     <fragment
-        android:id="@+id/editarLocalidadeFragment"
-        android:name="pt.ipg.trabfinal2022progavanc.EditarLocalidadeFragment"
-        android:label="fragment_editar_localidade"
-        tools:layout="@layout/fragment_editar_localidade" >
+        android:id="@+id/editarJogadorFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EditarJogadorFragment"
+        android:label="fragment_editar_jogador"
+        tools:layout="@layout/fragment_editar_jogador" >
         <action
-            android:id="@+id/action_editarLocalidadeFragment_to_secondFragment"
+            android:id="@+id/action_editarJogadorFragment_to_secondFragment2"
             app:destination="@id/secondFragment" />
+        <argument
+            android:name="Jogador"
+            app:argType="pt.ipg.trabfinal2022progavanc.Jogador"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
-        android:id="@+id/eliminarLocalidadeFragment"
-        android:name="pt.ipg.trabfinal2022progavanc.EliminarLocalidadeFragment"
-        android:label="EliminarLocalidadeFragment" >
+        android:id="@+id/eliminarJogadorFragment"
+        android:name="pt.ipg.trabfinal2022progavanc.EliminarJogadorFragment"
+        android:label="fragment_eliminar_jogador"
+        tools:layout="@layout/fragment_eliminar_jogador" >
         <action
-            android:id="@+id/action_eliminarLocalidadeFragment_to_secondFragment"
+            android:id="@+id/action_eliminarJogadorFragment_to_secondFragment2"
             app:destination="@id/secondFragment" />
+        <argument
+            android:name="Jogador"
+            app:argType="pt.ipg.trabfinal2022progavanc.Jogador" />
     </fragment>
 </navigation>

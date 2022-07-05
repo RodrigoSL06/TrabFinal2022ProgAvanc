@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 import java.util.*
 
 data class Localidade(
-    var nomeLocalidade: String,
+    var nomeLocalidade: String ="",
     var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues{

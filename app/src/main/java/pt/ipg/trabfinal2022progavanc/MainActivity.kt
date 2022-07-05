@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.fragmentContainerView2)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -66,16 +66,16 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as FirstFragment).processaOpcaoMenu(item)
         } else if (fragment is SecondFragment) {
             opcaoProcessada = (fragment as SecondFragment).processaOpcaoMenu(item)
-        } else if (fragment is EditarClienteFragment) {
-            opcaoProcessada = (fragment as EditarClienteFragment).processaOpcaoMenu(item)
-        } else if (fragment is EliminarClienteFragment) {
-            opcaoProcessada = (fragment as EliminarClienteFragment).processaOpcaoMenu(item)
-        } else if (fragment is ListarVinhosFragment) {
-            opcaoProcessada = (fragment as ListarVinhosFragment).processaOpcaoMenu(item)
-        } else if (fragment is EditarVinhoFragment) {
-            opcaoProcessada = (fragment as EditarVinhoFragment).processaOpcaoMenu(item)
-        }else if (fragment is EliminarVinhoFragment) {
-            opcaoProcessada = (fragment as EliminarVinhoFragment).processaOpcaoMenu(item)
+        } else if (fragment is EditarJogadorFragment) {
+            opcaoProcessada = (fragment as EditarJogadorFragment).processaOpcaoMenu(item)
+        } else if (fragment is EliminarJogadorFragment) {
+            opcaoProcessada = (fragment as EliminarJogadorFragment).processaOpcaoMenu(item)
+        } else if (fragment is ListarEquipasFragment) {
+            opcaoProcessada = (fragment as ListarEquipasFragment).processaOpcaoMenu(item)
+        } else if (fragment is EditarEquipaFragment) {
+            opcaoProcessada = (fragment as EditarEquipaFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarEquipaFragment) {
+            opcaoProcessada = (fragment as EliminarEquipaFragment).processaOpcaoMenu(item)
         }
         else {
             opcaoProcessada = false
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.fragmentContainerView2)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }

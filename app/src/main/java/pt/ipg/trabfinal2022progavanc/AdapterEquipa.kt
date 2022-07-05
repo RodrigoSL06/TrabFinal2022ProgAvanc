@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterEquipa.ViewHolderEquipa>() {
+class AdapterEquipa(val fragment: ListarEquipasFragment): RecyclerView.Adapter<AdapterEquipa.ViewHolderEquipa>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -35,7 +35,7 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
                 field = value
 
                 textViewNomeEquipa.text = equipa?.nomeEquipa ?: ""
-                textViewLocal.text = equipa?. ?: ""
+                textViewLocal.text = equipa?.localidade?.nomeLocalidade ?: ""
 
             }
 
@@ -79,7 +79,7 @@ class AdapterEquipa(val fragment: SecondFragment): RecyclerView.Adapter<AdapterE
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderEquipa {
-        val itemEquipa = fragment.layoutInflater.inflate(R.layout.item_localidade, parent, false)
+        val itemEquipa = fragment.layoutInflater.inflate(R.layout.item_jogador, parent, false)
         return ViewHolderEquipa(itemEquipa)
     }
 

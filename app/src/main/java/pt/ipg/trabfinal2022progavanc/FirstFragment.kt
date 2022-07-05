@@ -41,16 +41,6 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_firstFragment_to_listarEquipasFragment)
         }
 
-       /* binding.buttonPlayer.setOnClickListener{
-            findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
-        }
-
-        binding.buttonCoach.setOnClickListener{
-            findNavController().navigate(R.id.action_FirstFragment_to_listarVinhosFragment)
-        }
-        */
-
-
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_main

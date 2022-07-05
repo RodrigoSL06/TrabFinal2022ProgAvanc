@@ -80,7 +80,7 @@ class BaseDadosTeste {
         val localidade = Localidade("Barcelos")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Gil Vicente", localidade.id)
+        val equipa = Equipa("Gil Vicente", localidade)
         insereEquipa(db, equipa)
 
 
@@ -94,7 +94,7 @@ class BaseDadosTeste {
         val localidade = Localidade("Lisboa")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Sporting", localidade.id )
+        val equipa = Equipa("Sporting", localidade )
         insereEquipa(db, equipa)
 
         val treinador = Treinador("Rui", equipa.id, equipa.nomeEquipa, "936583413")
@@ -105,7 +105,7 @@ class BaseDadosTeste {
         db.close()
     }
 
-    /*
+
     @Test
     fun consegueInserirJogador() {
         val db = getWritableDatabase()
@@ -356,7 +356,7 @@ class BaseDadosTeste {
 
         db.close()
     }
-    */
+
 
     @Test
     fun consegueLerEquipa() {
@@ -365,7 +365,7 @@ class BaseDadosTeste {
         val localidade = Localidade("Porto")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("FCPorto", localidade.id)
+        val equipa = Equipa("FCPorto", localidade)
         insereEquipa(db, equipa)
 
         val cursor = TabelaBDEquipa(db).query(
@@ -386,7 +386,7 @@ class BaseDadosTeste {
         db.close()
     }
 
-    /*
+
     @Test
     fun consegueLerTreinador() {
         val db = getWritableDatabase()
@@ -447,5 +447,5 @@ class BaseDadosTeste {
         assertEquals(jogador, jogadorBD)
 
         db.close()
-    }*/
+    }
 }

@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipg.trabfinal2022progavanc.SecondFragment
 
-class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<AdapterLocalidade.ViewHolderLocalidade>() {
+
+class AdapterJogador(val fragment: SecondFragment): RecyclerView.Adapter<AdapterJogador.ViewHolderJogador>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -16,25 +18,30 @@ class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<Adap
             }
         }
 
-    var viewHolderSelecionado : ViewHolderLocalidade? = null
+    var viewHolderSelecionado : ViewHolderJogador? = null
 
 
-    inner class ViewHolderLocalidade(itemLocalidade: View) : RecyclerView.ViewHolder(itemLocalidade), View.OnClickListener {
-        val textViewNome  = itemLocalidade.findViewById<TextView>(R.id.textViewLocalidade)
-
-
+    inner class ViewHolderJogador(itemJogador: View) : RecyclerView.ViewHolder(itemJogador), View.OnClickListener {
+        val textViewNome  = itemJogador.findViewById<TextView>(R.id.textViewNome)
+        val textViewNumCamisola = itemJogador.findViewById<TextView>(R.id.textViewNumCamisola)
+        val textViewEquipa = itemJogador.findViewById<TextView>(R.id.textViewNomeEquipa)
+        val textViewDataNascimento = itemJogador.findViewById<TextView>(R.id.textViewDataNascimento)
+        val textViewTelemovel = itemJogador.findViewById<TextView>(R.id.textViewTelemovel)
 
         init {
-            itemLocalidade.setOnClickListener(this)
+            itemJogador.setOnClickListener(this)
         }
 
-        var localidade : Localidade? = null
+        var jogador : Jogador? = null
             get() = field
-            set(value: Localidade?) {
+            set(value: Jogador?) {
                 field = value
 
-                textViewNome.text = localidade?.nomeLocalidade ?: ""
-
+                textViewNome.text = jogador?.nome ?: ""
+                textViewNumCamisola.text = jogador?.ncamisola?: ""
+                textViewEquipa.text = jogador?.nomeEquipa?: ""
+                textViewDataNascimento.text = jogador?.dataNascimento ?: ""
+                textViewTelemovel.text = jogador?.telemovel?: ""
             }
 
         override fun onClick(v: View?) {
@@ -45,7 +52,7 @@ class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<Adap
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
-            fragment.localidadeSelecionado = localidade
+            fragment.jogadorSelecionado = jogador
         }
 
         private fun desseleciona() {
@@ -76,11 +83,7 @@ class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<Adap
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    //override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLivro {
-    // val itemCliente = fragment.layoutInflater.inflate(R.layout.activity_client_update_delete, parent, false)
-    //return ViewHolderLivro(itemCliente)
 
-    //}
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -103,9 +106,9 @@ class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<Adap
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderLocalidade, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderJogador, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.localidade=Localidade.fromCursor(cursor!!)
+        holder.jogador=Jogador.fromCursor(cursor!!)
     }
 
     /**
@@ -119,8 +122,8 @@ class AdapterLocalidade(val fragment: SecondFragment): RecyclerView.Adapter<Adap
         return cursor!!.count
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLocalidade {
-        val itemLocalidade = fragment.layoutInflater.inflate(R.layout.item_localidade, parent, false)
-        return ViewHolderLocalidade(itemLocalidade)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderJogador {
+        val itemJogador = fragment.layoutInflater.inflate(R.layout.item_jogador, parent, false)
+        return ViewHolderJogador(itemJogador)
     }
 }

@@ -1,6 +1,6 @@
 package pt.ipg.trabfinal2022progavanc
 
-import AdapterVinhos
+
 import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,10 +13,6 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.provavinhos.BD.ContentProviderClientes
-import com.example.provavinhos.BD.TabelaBDVinhos
-import com.example.provavinhos.BD.Wine
-import com.example.provavinhos.databinding.FragmentListarVinhosBinding
 import pt.ipg.trabfinal2022progavanc.databinding.FragmentListarEquipasBinding
 
 /**
@@ -36,7 +32,7 @@ class ListarEquipasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -153,21 +149,21 @@ class ListarEquipasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = ListarEquipaFragmentDirections.action_listarEquipasFragment_to_editarEquipaFragment()
+                val acao = ListarEquipasFragmentDirections.actionListarEquipasFragmentToEditarEquipaFragment()
                 findNavController().navigate(acao)
-                (activity as MainActivity).atualizaTitulo(R.string.insert_equipa)
+                (activity as MainActivity).atualizaTitulo(R.string.insertTeam)
                 true
             }
             R.id.action_alterar -> {
-                val acao = ListarEquipaFragmentDirections.action_listarEquipasFragment_to_editarEquipaFragment(equipaSeleccionado)
+                val acao = ListarEquipasFragmentDirections.actionListarEquipasFragmentToEditarEquipaFragment(equipaSeleccionado)
                 findNavController().navigate(acao)
-                (activity as MainActivity).atualizaTitulo(R.string.edit_equipa)
+                (activity as MainActivity).atualizaTitulo(R.string.editTeam)
                 true
             }
             R.id.action_guardar -> {
-                val acao = ListarEquipasFragmentDirections.action_listarEquipasFragment_to_eliminarEquipaFragment(equipaSeleccionado!!)
+                val acao = ListarEquipasFragmentDirections.actionListarEquipasFragmentToEliminarEquipaFragment(equipaSeleccionado!!)
                 findNavController().navigate(acao)
-                (activity as MainActivity).atualizaTitulo(R.string.delete_equipa)
+                (activity as MainActivity).atualizaTitulo(R.string.editTeam)
                 true
             }
             else -> false

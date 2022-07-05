@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrabFinal2022ProgAvanc</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="tournament">Torneio de Futsal</string>
+    <string name="Team">Equipa</string>
+    <string name="Coach">Treinador</string>
+    <string name="Player">Jogador</string>
+    <string name="Login">Login</string>
+    <string name="Insert">Inserir</string>
+    <string name="Settings">Settings</string>
+    <string name="Edit">Alterar</string>
+    <string name="Register">Register</string>
+    <string name="Read">Ler</string>
+    <string name="Update">Atualizar</string>
+    <string name="Delete">Eliminar</string>
+    <string name="Name">Nome</string>
+    <string name="Locality">Localidade</string>
+    <string name="Numberofplayers">Numero de Jogadores</string>
+    <string name="Create">Criar</string>
+    <string name="BirthDate">Data Nascimento</string>
+    <string name="NumberPhone">Numero Telemovel</string>
+    <string name="SweaterNumber">Numero Camisola</string>
+    <string name="FutsalTournament">Torneio futsal</string>
+    <string name="UserName">Nome Utilizador</string>
+    <string name="Password">Palavra Passe</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Save">Guardar</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Savee">Guardar</string>
+    <string name="TeamName">Nome equipa</string>
+    <string name="LocalityName">Nome Localidade</string>
+    <string name="DeleteTeam">Eliminar Equipa</string>
+    <string name="TeammName">Nome Equipa</string>
+    <string name="DeleteLocality">Eiminar localidade</string>
+    <string name="NSweater">NumCamisola</string>
+    <string name="DeletePlayer">Eliminar Jogador</string>
+    <string name="Mandatoryfield">Campo obrigatorio</string>
+    <string name="done">Feito</string>
+    <string name="error">erro</string>
+    <string name="deleteTeam">Eliminar Equipa</string>
+    <string name="confirmdeletion">Confirmar eliminacao</string>
+    <string name="delete">Eliminar</string>
+    <string name="deletePlayer">Eliminar Jogador</string>
+    <string name="insertPlayer">Inserir Jogador</string>
+    <string name="editPlayer">Editar Jogador</string>
+</resources>

@@ -50,7 +50,7 @@ class EditarEquipaFragment : Fragment(){
 
             if (equipa != null) {
                 binding.editTextNomeEquipa.setText(equipa!!.nomeEquipa)
-                binding.textViewLocal.setText(equipa!!.localidade)
+                binding.textViewLocal.setText(equipa!!.localidade!!.nomeLocalidade)
 
             }
         }
@@ -84,14 +84,14 @@ class EditarEquipaFragment : Fragment(){
     private fun guardar() {
         val nome = binding.editTextNomeEquipa.text.toString()
         if (nome.isBlank()) {
-            binding.editTextNomeEquipa.error = getString(R.string.campo_obrigatorio)
+            binding.editTextNomeEquipa.error = getString(R.string.Mandatoryfield)
             binding.editTextNomeEquipa.requestFocus()
             return
         }
 
         val localidade = binding.spinnerLocal.selectedItemId
         if (localidade == Spinner.INVALID_ROW_ID) {
-            binding.textViewLocal.error = getString(R.string.field_mandatory)
+            binding.textViewLocal.error = getString(R.string.Mandatoryfield)
             binding.spinnerLocal.requestFocus()
             return
         }
@@ -113,8 +113,8 @@ class EditarEquipaFragment : Fragment(){
         }
     }
 
-    private fun alteraEquipa(nomeEquipa: String, localidade: Long) : Boolean {
-        val equipa = Equipa(nomeEquipa, localidade)
+    private fun alteraEquipa(nomeEquipa: String, idLocalidade: Long) : Boolean {
+        val equipa = Equipa(nomeEquipa, Localidade(id = idLocalidade))
 
         val enderecoEquipa = Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_EQUIPA, "${this.equipa!!.id}")
 
@@ -123,8 +123,8 @@ class EditarEquipaFragment : Fragment(){
         return registosAlterados == 1
     }
 
-    private fun insereEquipa(nomeEquipa: String, localidade: Long ): Boolean {
-        val equipa = Equipa(nomeEquipa, localidade)
+    private fun insereEquipa(nomeEquipa: String, idLocalidade: Long ): Boolean {
+        val equipa = Equipa(nomeEquipa, Localidade(id = idLocalidade))
 
         val enderecoEquipaInserido = requireActivity().contentResolver.insert(ContentProviderFutsal.ENDERECO_EQUIPA, equipa.toContentValues())
 

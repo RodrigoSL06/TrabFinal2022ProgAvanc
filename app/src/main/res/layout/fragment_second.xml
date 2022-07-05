@@ -7,7 +7,7 @@
     tools:context=".SecondFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewClientes"
+        android:id="@+id/recyclerViewJogador"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"

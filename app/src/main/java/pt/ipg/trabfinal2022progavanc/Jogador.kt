@@ -3,6 +3,7 @@ package pt.ipg.trabfinal2022progavanc
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 import java.util.*
 import kotlin.math.E
 
@@ -12,10 +13,10 @@ data class Jogador(
     var ncamisola: String,
     var idEquipa: Long,
     var nomeEquipa: String,
-    var data_nascimento: String,
+    var dataNascimento: String,
     var telemovel: String,
     var id: Long = -1,
-) {
+):Serializable{
 
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
@@ -23,7 +24,7 @@ data class Jogador(
         valores.put(TabelaBDJogador.CAMPO_NOME, nome)
         valores.put(TabelaBDJogador.CAMPO_NCAMISOLA, ncamisola)
         valores.put(TabelaBDJogador.CAMPO_EQUIPA_ID, idEquipa)
-        valores.put(TabelaBDJogador.CAMPO_DATA_NASCIMENTO, data_nascimento)
+        valores.put(TabelaBDJogador.CAMPO_DATA_NASCIMENTO, dataNascimento)
         valores.put(TabelaBDJogador.CAMPO_TELEMOVEL, telemovel)
 
         return valores
