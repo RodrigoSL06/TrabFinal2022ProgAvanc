@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
+        <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/drawable/ic_baseline_add.xml" value="0.188" />
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/drawable/ic_lock.xml" value="0.2325" />
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/drawable/ic_logo_dp.xml" value="0.2435" />
@@ -41,6 +42,7 @@
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/menu/menu_elimina.xml" value="0.1" />
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/menu/menu_lista.xml" value="0.1" />
         <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/menu/menu_main.xml" value="0.259375" />
+        <entry key="..\:/Users/rlslo/AndroidStudioProjects/TrabFinal2022ProgAvanc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.188" />
       </map>
     </option>
   </component>
