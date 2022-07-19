@@ -48,7 +48,7 @@ class BaseDadosTeste {
     }
 
 
-
+    @Test
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDFutsalOpenHelper.NOME)
     }
@@ -91,13 +91,7 @@ class BaseDadosTeste {
     fun consegueInserirTreinador() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Lisboa")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Sporting", localidade )
-        insereEquipa(db, equipa)
-
-        val treinador = Treinador("Rui", equipa.id, equipa.nomeEquipa, "936583413", "925774878")
+        val treinador = Treinador("Rui", "12/05/1979", "925774878")
         treinador.id = TabelaBDTreinador(db).insert(treinador.toContentValues())
 
         assertNotEquals(-1, treinador.id)
@@ -110,13 +104,7 @@ class BaseDadosTeste {
     fun consegueInserirJogador() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Lisboa")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Sporting", localidade)
-        insereEquipa(db, equipa)
-
-        val jogador = Jogador( "Ruben", "7", equipa.id, equipa.nomeEquipa,"12/2/1993", "924563456")
+        val jogador = Jogador( "Ruben", "7","12/2/1993", "924563456")
         insereJogador(db, jogador)
 
         db.close()
@@ -178,24 +166,10 @@ class BaseDadosTeste {
 
         val db = getWritableDatabase()
 
-        val localidadeGuarda = Localidade("Guarda")
-        insereLocalidade(db, localidadeGuarda)
-
-        val localidadeLisboa = Localidade("Lisboa")
-        insereLocalidade(db, localidadeLisboa)
-
-        val equipaSporting = Equipa("Sporting", localidadeLisboa )
-        insereEquipa(db, equipaSporting)
-
-        val equipaBenfica = Equipa("Benfica", localidadeLisboa)
-        insereEquipa(db, equipaBenfica)
-
-        val treinador = Treinador("Manel", equipaSporting.id, "Benfica" ,"12/07/1998", "931313313")
+        val treinador = Treinador("Manel", "14/07/1981" ,"12/07/1998")
         insereTreinador(db, treinador)
 
         treinador.nome = "Mateus"
-        treinador.idEquipa = equipaBenfica.id
-        treinador.nomeEquipa = "Benfica"
         treinador.dataNascimento = "01/01/1987"
         treinador.telemovel = "925668090"
 
@@ -216,24 +190,11 @@ class BaseDadosTeste {
 
         val db = getWritableDatabase()
 
-        val localidadeGuarda = Localidade("Guarda")
-        insereLocalidade(db, localidadeGuarda)
-
-        val localidadeLisboa = Localidade("Lisboa")
-        insereLocalidade(db, localidadeLisboa)
-
-        val equipaPorto = Equipa("Porto", localidadeLisboa)
-        insereEquipa(db, equipaPorto)
-
-        val equipaBraga = Equipa("Braga", localidadeLisboa)
-        insereEquipa(db, equipaBraga)
-
-        val jogador = Jogador("Ze", "4", equipaPorto.id, "Sporting","23/07/1990", "965874514")
+        val jogador = Jogador("Ze", "4", "13/02/1998","925887487")
         insereJogador(db, jogador)
 
-        jogador.nome = "A rapariga no comboio"
+        jogador.nome = "Andre"
         jogador.ncamisola = "11"
-        jogador.idEquipa = equipaBraga.id
         jogador.dataNascimento = "01/01/1987"
         jogador.telemovel = "925668090"
 
@@ -290,13 +251,7 @@ class BaseDadosTeste {
     fun consegueEliminarTreinador() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Viseu")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Boavista", localidade)
-        insereEquipa(db, equipa)
-
-        val treinador = Treinador("Toninho", equipa.id, "13/02/1991","925887090", "963334512")
+        val treinador = Treinador("Toninho",  "13/02/1991","925887090")
         insereTreinador(db, treinador)
 
         val registosEliminados = TabelaBDTreinador(db).delete(
@@ -319,7 +274,7 @@ class BaseDadosTeste {
         val equipa = Equipa("Boavista", localidade)
         insereEquipa(db, equipa)
 
-        val jogador = Jogador("TESTE","4", equipa.id, "Boavista", "14/03/1992", "924556769")
+        val jogador = Jogador("TESTE","4","Boavista", "14/03/1992")
         insereJogador(db, jogador)
 
         val registosEliminados = TabelaBDJogador(db).delete(
@@ -391,13 +346,7 @@ class BaseDadosTeste {
     fun consegueLerTreinador() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Viseu")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Tondela", localidade)
-        insereEquipa(db, equipa)
-
-        val treinador = Treinador("Antonio", equipa.id, "15/04/1998","914556768", "916224514")
+        val treinador = Treinador("Antonio", "15/04/1998","914556768")
         insereTreinador(db, treinador)
 
         val cursor = TabelaBDTreinador(db).query(
@@ -421,14 +370,8 @@ class BaseDadosTeste {
     @Test
     fun consegueLerJogador() {
         val db = getWritableDatabase()
-
-        val localidade = Localidade("Viseu")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Tondela", localidade)
-        insereEquipa(db, equipa)
-
-        val jogador = Jogador("Pedro", "15", equipa.id, "Tondela", "11/04/1996", "914500068")
+        
+        val jogador = Jogador("Pedro", "15",  "Tondela", "11/04/1996")
         insereJogador(db, jogador)
 
         val cursor = TabelaBDJogador(db).query(

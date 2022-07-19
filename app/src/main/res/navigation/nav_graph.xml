@@ -82,7 +82,7 @@
             android:id="@+id/action_editarJogadorFragment_to_secondFragment2"
             app:destination="@id/secondFragment" />
         <argument
-            android:name="Jogador"
+            android:name="jogador"
             app:argType="pt.ipg.trabfinal2022progavanc.Jogador"
             app:nullable="true"
             android:defaultValue="@null" />
@@ -96,7 +96,7 @@
             android:id="@+id/action_eliminarJogadorFragment_to_secondFragment2"
             app:destination="@id/secondFragment" />
         <argument
-            android:name="Jogador"
+            android:name="jogador"
             app:argType="pt.ipg.trabfinal2022progavanc.Jogador" />
     </fragment>
 </navigation>

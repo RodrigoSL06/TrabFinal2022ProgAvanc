@@ -24,7 +24,6 @@ class AdapterJogador(val fragment: SecondFragment): RecyclerView.Adapter<Adapter
     inner class ViewHolderJogador(itemJogador: View) : RecyclerView.ViewHolder(itemJogador), View.OnClickListener {
         val textViewNome  = itemJogador.findViewById<TextView>(R.id.textViewNome)
         val textViewNumCamisola = itemJogador.findViewById<TextView>(R.id.textViewNumCamisola)
-        val textViewEquipa = itemJogador.findViewById<TextView>(R.id.textViewNomeEquipa)
         val textViewDataNascimento = itemJogador.findViewById<TextView>(R.id.textViewDataNascimento)
         val textViewTelemovel = itemJogador.findViewById<TextView>(R.id.textViewTelemovel)
 
@@ -39,7 +38,6 @@ class AdapterJogador(val fragment: SecondFragment): RecyclerView.Adapter<Adapter
 
                 textViewNome.text = jogador?.nome ?: ""
                 textViewNumCamisola.text = jogador?.ncamisola?: ""
-                textViewEquipa.text = jogador?.nomeEquipa?: ""
                 textViewDataNascimento.text = jogador?.dataNascimento ?: ""
                 textViewTelemovel.text = jogador?.telemovel?: ""
             }

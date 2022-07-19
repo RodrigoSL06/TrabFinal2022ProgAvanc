@@ -52,7 +52,6 @@ class EditarJogadorFragment : Fragment(){
             if (jogador != null) {
                 binding.editTextNomeEquipa.setText(jogador!!.nome)
                 binding.editTextNCamisola.setText(jogador!!.ncamisola!!)
-                binding.editTextNomeEquipa.setText(jogador!!.nomeEquipa!!)
                 binding.editTextDataNascimento.setText(jogador!!.dataNascimento!!)
                 binding.editTextTelemovel.setText(jogador!!.telemovel!!)
 
@@ -100,13 +99,6 @@ class EditarJogadorFragment : Fragment(){
             return
         }
 
-        val equipa = binding.editTextNomeEquipa.text.toString()
-        if (equipa.isBlank()) {
-            binding.editTextNomeEquipa.error = getString(R.string.Mandatoryfield)
-            binding.editTextNomeEquipa.requestFocus()
-            return
-        }
-
         val dataNascimento = binding.editTextDataNascimento.text.toString()
         if (dataNascimento.isBlank()) {
             binding.editTextDataNascimento.error = getString(R.string.Mandatoryfield)
@@ -124,9 +116,9 @@ class EditarJogadorFragment : Fragment(){
 
         val EquipaGuardado =
             if (jogador== null) {
-                insereJogador(nome, nCamisola, equipa, dataNascimento, telemovel)
+                insereJogador(nome, nCamisola, dataNascimento, telemovel)
             } else {
-                alteraJogador(nome, nCamisola, equipa, dataNascimento, telemovel)
+                alteraJogador(nome, nCamisola, dataNascimento, telemovel)
             }
 
         if (EquipaGuardado) {
@@ -139,8 +131,8 @@ class EditarJogadorFragment : Fragment(){
         }
     }
 
-    private fun alteraJogador(nome: String, ncamisola: String, idEquipa: Long, nomeEquipa: String, dataNascimento: String, telemovel: String) : Boolean {
-        val jogador = Jogador(nome, ncamisola, idEquipa ,nomeEquipa,dataNascimento , telemovel)
+    private fun alteraJogador(nome: String, ncamisola: String, dataNascimento: String, telemovel: String) : Boolean {
+        val jogador = Jogador(nome, ncamisola, dataNascimento , telemovel)
 
         val enderecoJogador = Uri.withAppendedPath(ContentProviderFutsal.ENDERECO_JOGADORES, "${this.jogador!!.id}")
 
@@ -149,8 +141,8 @@ class EditarJogadorFragment : Fragment(){
         return registosAlterados == 1
     }
 
-    private fun insereJogador(nome: String, ncamisola: String, idEquipa: Long, nomeEquipa: String, dataNascimento: String, telemovel: String) : Boolean {
-        val jogador = Jogador(nome, ncamisola, idEquipa ,nomeEquipa,dataNascimento , telemovel)
+    private fun insereJogador(nome: String, ncamisola: String, dataNascimento: String, telemovel: String) : Boolean {
+        val jogador = Jogador(nome, ncamisola, dataNascimento , telemovel)
 
         val enderecoJogadorInserido = requireActivity().contentResolver.insert(ContentProviderFutsal.ENDERECO_JOGADORES, jogador.toContentValues())
 

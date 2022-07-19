@@ -51,7 +51,6 @@ class EliminarJogadorFragment : Fragment() {
 
         binding.textViewNome.text = jogador.nome
         binding.textViewNumber.text = jogador.ncamisola
-        binding.textViewTeamName.text = jogador.nomeEquipa
         binding.textViewBirth.text = jogador.dataNascimento
         binding.textViewPhone.text = jogador.telemovel
 
