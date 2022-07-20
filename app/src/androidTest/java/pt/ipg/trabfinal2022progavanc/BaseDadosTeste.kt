@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
-import java.util.*
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -48,7 +48,7 @@ class BaseDadosTeste {
     }
 
 
-    @Test
+    @Before
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDFutsalOpenHelper.NOME)
     }
@@ -91,7 +91,7 @@ class BaseDadosTeste {
     fun consegueInserirTreinador() {
         val db = getWritableDatabase()
 
-        val treinador = Treinador("Rui", "12/05/1979", "925774878")
+        val treinador = Treinador("Luis", "12/08/1998", "913131311")
         treinador.id = TabelaBDTreinador(db).insert(treinador.toContentValues())
 
         assertNotEquals(-1, treinador.id)
@@ -121,7 +121,7 @@ class BaseDadosTeste {
         localidade.nomeLocalidade = "Guarda"
         val registosAlterados = TabelaBDLocalidade(db).update(
             localidade  .toContentValues(),
-            "${TabelaBDLocalidade.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${localidade.id}")
         )
 
@@ -150,7 +150,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDEquipa(db).update(
             equipa.toContentValues(),
-            "${TabelaBDEquipa.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${equipa.id}")
         )
 
@@ -166,7 +166,7 @@ class BaseDadosTeste {
 
         val db = getWritableDatabase()
 
-        val treinador = Treinador("Manel", "14/07/1981" ,"12/07/1998")
+        val treinador = Treinador("Manel", "14/07/1981" ,"925887471")
         insereTreinador(db, treinador)
 
         treinador.nome = "Mateus"
@@ -175,7 +175,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDTreinador(db).update(
             treinador.toContentValues(),
-            "${TabelaBDTreinador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${treinador.id}")
         )
 
@@ -200,7 +200,7 @@ class BaseDadosTeste {
 
         val registosAlterados = TabelaBDJogador(db).update(
             jogador.toContentValues(),
-            "${TabelaBDJogador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${jogador.id}")
         )
 
@@ -218,7 +218,7 @@ class BaseDadosTeste {
         insereLocalidade(db, localidade)
 
         val registosEliminados = TabelaBDLocalidade(db).delete(
-            "${TabelaBDLocalidade.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${localidade.id}")
         )
 
@@ -238,7 +238,7 @@ class BaseDadosTeste {
         insereEquipa(db, equipa)
 
         val registosEliminados = TabelaBDEquipa(db).delete(
-            "${TabelaBDEquipa.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${equipa.id}")
         )
 
@@ -251,11 +251,11 @@ class BaseDadosTeste {
     fun consegueEliminarTreinador() {
         val db = getWritableDatabase()
 
-        val treinador = Treinador("Toninho",  "13/02/1991","925887090")
+        val treinador = Treinador("TESTE",  "13/02/1991","925887090")
         insereTreinador(db, treinador)
 
         val registosEliminados = TabelaBDTreinador(db).delete(
-            "${TabelaBDTreinador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${treinador.id}")
         )
 
@@ -268,17 +268,11 @@ class BaseDadosTeste {
     fun consegueEliminarJogador() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Viseu")
-        insereLocalidade(db, localidade)
-
-        val equipa = Equipa("Boavista", localidade)
-        insereEquipa(db, equipa)
-
         val jogador = Jogador("TESTE","4","Boavista", "14/03/1992")
         insereJogador(db, jogador)
 
         val registosEliminados = TabelaBDJogador(db).delete(
-            "${TabelaBDJogador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${jogador.id}")
         )
 
@@ -296,7 +290,7 @@ class BaseDadosTeste {
 
         val cursor = TabelaBDLocalidade(db).query(
             TabelaBDLocalidade.TODAS_COLUNAS,
-            "${TabelaBDLocalidade.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${localidade.id}"),
             null,
             null,
@@ -351,7 +345,7 @@ class BaseDadosTeste {
 
         val cursor = TabelaBDTreinador(db).query(
             TabelaBDTreinador.TODAS_COLUNAS,
-            "${TabelaBDTreinador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${treinador.id}"),
             null,
             null,
@@ -370,13 +364,13 @@ class BaseDadosTeste {
     @Test
     fun consegueLerJogador() {
         val db = getWritableDatabase()
-        
+
         val jogador = Jogador("Pedro", "15",  "Tondela", "11/04/1996")
         insereJogador(db, jogador)
 
         val cursor = TabelaBDJogador(db).query(
             TabelaBDJogador.TODAS_COLUNAS,
-            "${TabelaBDJogador.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${jogador.id}"),
             null,
             null,

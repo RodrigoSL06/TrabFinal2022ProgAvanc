@@ -50,7 +50,6 @@ class EditarJogadorFragment : Fragment(){
             jogador = EditarJogadorFragmentArgs.fromBundle(arguments!!).jogador
 
             if (jogador != null) {
-                binding.editTextNomeEquipa.setText(jogador!!.nome)
                 binding.editTextNCamisola.setText(jogador!!.ncamisola!!)
                 binding.editTextDataNascimento.setText(jogador!!.dataNascimento!!)
                 binding.editTextTelemovel.setText(jogador!!.telemovel!!)
@@ -114,19 +113,19 @@ class EditarJogadorFragment : Fragment(){
         }
 
 
-        val EquipaGuardado =
+        val JogadorGuardado =
             if (jogador== null) {
                 insereJogador(nome, nCamisola, dataNascimento, telemovel)
             } else {
                 alteraJogador(nome, nCamisola, dataNascimento, telemovel)
             }
 
-        if (EquipaGuardado) {
+        if (JogadorGuardado) {
             Toast.makeText(requireContext(), R.string.done, Toast.LENGTH_LONG)
                 .show()
             voltaListaEquipas()
         } else {
-            Snackbar.make(binding.editTextNomeEquipa, R.string.error, Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNome, R.string.error, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
     }

@@ -4,8 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 import java.io.Serializable
-import java.util.*
-import kotlin.math.E
+
 
 data class Jogador(
 

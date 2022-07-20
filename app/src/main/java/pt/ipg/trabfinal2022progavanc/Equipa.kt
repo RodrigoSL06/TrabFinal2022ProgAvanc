@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 import java.io.Serializable
-import java.util.*
+
 
 data class Equipa( // E como se fosse o vinho
     var nomeEquipa: String,

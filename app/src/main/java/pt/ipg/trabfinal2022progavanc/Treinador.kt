@@ -3,7 +3,7 @@ package pt.ipg.trabfinal2022progavanc
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
-import java.util.*
+
 
 data class Treinador(
     var nome: String,
@@ -34,7 +34,7 @@ data class Treinador(
             val telemovel = cursor.getString(colTelemovel)
             val id = cursor.getLong(colId)
 
-            return Treinador(nome, dataNascimento, telemovel)
+            return Treinador(nome, dataNascimento, telemovel, id)
 
         }
     }
