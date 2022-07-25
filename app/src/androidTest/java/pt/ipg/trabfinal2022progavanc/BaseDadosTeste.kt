@@ -119,6 +119,7 @@ class BaseDadosTeste {
         insereLocalidade(db, localidade)
 
         localidade.nomeLocalidade = "Guarda"
+
         val registosAlterados = TabelaBDLocalidade(db).update(
             localidade  .toContentValues(),
             "${BaseColumns._ID}=?",
