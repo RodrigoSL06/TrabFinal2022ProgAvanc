@@ -29,17 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-    <TextView
-        android:id="@+id/textViewEquipa"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Sporting"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
 
     <TextView
         android:id="@+id/textViewDataNascimento"
@@ -74,7 +64,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/textView15"
@@ -84,17 +75,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/SweaterNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNome" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNome"
+        android:layout_marginLeft="8dp" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/TeamName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNumCamisola" />
 
     <TextView
         android:id="@+id/textView17"
@@ -104,7 +87,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/BirthDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEquipa" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumCamisola"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/textView18"
@@ -114,7 +98,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/NumberPhone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDataNascimento" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataNascimento"
+        android:layout_marginLeft="8dp" />
 
 
 

@@ -1,8 +1,7 @@
 package pt.ipg.trabfinal2022progavanc
 
-import android.content.Intent
+
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,8 +9,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import pt.ipg.trabfinal2022progavanc.databinding.ActivityMainBinding
 
@@ -41,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.fragmentContainerView2)
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -76,6 +73,13 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EditarEquipaFragment).processaOpcaoMenu(item)
         }else if (fragment is EliminarEquipaFragment) {
             opcaoProcessada = (fragment as EliminarEquipaFragment).processaOpcaoMenu(item)
+
+        } else if (fragment is SecondFragment) {
+        opcaoProcessada = (fragment as SecondFragment).processaOpcaoMenu(item)
+        } else if (fragment is EditarJogadorFragment) {
+        opcaoProcessada = (fragment as EditarJogadorFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarJogadorFragment) {
+        opcaoProcessada = (fragment as EliminarJogadorFragment).processaOpcaoMenu(item)
         }
         else {
             opcaoProcessada = false
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.fragmentContainerView2)
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }

@@ -8,7 +8,7 @@ import android.provider.BaseColumns
 class TabelaBDJogador(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
-            "CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "$CAMPO_NOME TEXT NOT NULL, " +
                     "$CAMPO_NCAMISOLA INTEGER NOT NULL, " +
                     "$CAMPO_DATA_NASCIMENTO TEXT NOT NULL, " +

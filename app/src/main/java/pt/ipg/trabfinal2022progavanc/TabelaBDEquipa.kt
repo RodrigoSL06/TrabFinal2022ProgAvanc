@@ -8,10 +8,12 @@ import android.provider.BaseColumns
 class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
     override fun cria() {
         db.execSQL(
-            "CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "$CAMPO_NOME TEXT NOT NULL, $CAMPO_LOCALIDADE_ID INTEGER NOT NULL, " +
-                    "FOREIGN KEY ($CAMPO_LOCALIDADE_ID) REFERENCES ${TabelaBDLocalidade.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+            "CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "$CAMPO_NOME_EQUIPA TEXT NOT NULL, $CAMPO_LOCALIDADE_ID INTEGER NOT NULL, " +
+                    "FOREIGN KEY ($CAMPO_LOCALIDADE_ID) REFERENCES ${TabelaBDLocalidade.NOME_TABELA}" +
+                    "(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
+
 
     override fun query(
         columns: Array<String>,
@@ -31,10 +33,10 @@ class TabelaBDEquipa(db: SQLiteDatabase) : TabelasBD(db, NOME_TABELA) {
         const val NOME_TABELA = "Equipa"
 
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
-        const val CAMPO_NOME = "nome"
+        const val CAMPO_NOME_EQUIPA = "nome"
         const val CAMPO_LOCALIDADE_ID = "localidadeID"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME, CAMPO_LOCALIDADE_ID, TabelaBDLocalidade.CAMPO_NOME)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_EQUIPA, CAMPO_LOCALIDADE_ID, TabelaBDLocalidade.CAMPO_NOME)
     }
 }
 

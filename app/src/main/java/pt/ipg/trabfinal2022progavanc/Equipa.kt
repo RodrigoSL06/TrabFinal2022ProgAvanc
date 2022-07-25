@@ -6,15 +6,15 @@ import android.provider.BaseColumns
 import java.io.Serializable
 
 
-data class Equipa( // E como se fosse o vinho
+data class Equipa(
     var nomeEquipa: String,
-    var localidade: Localidade, // regiao
+    var localidade: Localidade,
     var id: Long = -1,
 ): Serializable {
     fun toContentValues() : ContentValues{
         val valores = ContentValues()
 
-        valores.put(TabelaBDEquipa.CAMPO_NOME, nomeEquipa)
+        valores.put(TabelaBDEquipa.CAMPO_NOME_EQUIPA, nomeEquipa)
         valores.put(TabelaBDEquipa.CAMPO_LOCALIDADE_ID, localidade.id)
 
         return valores
@@ -23,7 +23,7 @@ data class Equipa( // E como se fosse o vinho
     companion object {
         fun fromCursor(cursor: Cursor): Equipa {
 
-            val colNome = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_NOME)
+            val colNome = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_NOME_EQUIPA)
             val colIDLocalidade = cursor.getColumnIndex(TabelaBDEquipa.CAMPO_LOCALIDADE_ID)
             val colNomeLocalidade = cursor.getColumnIndex(TabelaBDLocalidade.CAMPO_NOME)
             val colId = cursor.getColumnIndex(BaseColumns._ID)

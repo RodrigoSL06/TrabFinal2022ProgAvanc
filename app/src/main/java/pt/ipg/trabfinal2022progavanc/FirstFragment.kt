@@ -33,12 +33,12 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonLocality.setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
-        }
-
         binding.buttonTeam.setOnClickListener{
             findNavController().navigate(R.id.action_firstFragment_to_listarEquipasFragment)
+        }
+
+        binding.buttonPlayer.setOnClickListener{
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
 
         val activity = activity as MainActivity

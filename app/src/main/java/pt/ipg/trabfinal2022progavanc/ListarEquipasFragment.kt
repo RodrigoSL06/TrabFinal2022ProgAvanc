@@ -81,7 +81,7 @@ class ListarEquipasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             TabelaBDEquipa.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDEquipa.CAMPO_NOME}"
+            "${TabelaBDEquipa.CAMPO_NOME_EQUIPA}"
         )
 
     /**

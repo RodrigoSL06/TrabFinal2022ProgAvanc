@@ -45,8 +45,6 @@ class ContentProviderFutsal : ContentProvider() {
             else -> null
         }
 
-        db.close()
-
         return cursor
     }
 
