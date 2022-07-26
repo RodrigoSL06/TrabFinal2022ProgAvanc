@@ -27,6 +27,11 @@ class BaseDadosTeste {
         return openHelper.writableDatabase
     }
 
+    private fun insereLocalidade(db: SQLiteDatabase, localidade : Localidade) {
+        localidade.id = TabelaBDLocalidade(db).insert(localidade.toContentValues())
+        assertNotEquals(-1, localidade.id)
+    }
+
     private fun insereEquipa(db: SQLiteDatabase, equipa : Equipa) {
         equipa.id = TabelaBDEquipa(db).insert(equipa.toContentValues())
         assertNotEquals(-1, equipa.id)
@@ -41,12 +46,6 @@ class BaseDadosTeste {
         jogador.id = TabelaBDJogador(db).insert(jogador.toContentValues())
         assertNotEquals(-1, jogador.id)
     }
-
-    private fun insereLocalidade(db: SQLiteDatabase, localidade : Localidade) {
-        localidade.id = TabelaBDLocalidade(db).insert(localidade.toContentValues())
-        assertNotEquals(-1, localidade.id)
-    }
-
 
     @Test
     fun apagaBaseDados() {
@@ -67,8 +66,8 @@ class BaseDadosTeste {
     fun consegueInserirLocalidade() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Aveiro")
-        insereLocalidade(db, localidade)
+        insereLocalidade(db, Localidade("Porto"))
+
 
         db.close()
     }
@@ -77,12 +76,28 @@ class BaseDadosTeste {
     fun consegueInserirEquipa() {
         val db = getWritableDatabase()
 
-        val localidade = Localidade("Barcelos")
+        val localidade = Localidade("Porto")
         insereLocalidade(db, localidade)
 
-        val equipa = Equipa("Gil Vicente", localidade)
-        insereEquipa(db, equipa)
+        val localidade2 = Localidade("Guarda")
+        insereLocalidade(db, localidade2)
 
+        val localidade3 = Localidade("Lisboa")
+        insereLocalidade(db, localidade3)
+
+        val equipa = Equipa("Porto",  localidade)
+        equipa.id = TabelaBDEquipa(db).insert(equipa.toContentValues())
+
+        val equipa2 = Equipa("NDS",  localidade)
+        equipa2.id = TabelaBDEquipa(db).insert(equipa2.toContentValues())
+
+        val equipa3 = Equipa("Sporting", localidade)
+        equipa3.id = TabelaBDEquipa(db).insert(equipa3.toContentValues())
+
+
+        assertNotEquals(-1, equipa.id)
+        assertNotEquals(-1, equipa2.id)
+        assertNotEquals(-1, equipa3.id)
 
         db.close()
     }
@@ -186,21 +201,21 @@ class BaseDadosTeste {
 
     }
 
-
+    @Test
     fun consegueAlterarJogador() {
 
         val db = getWritableDatabase()
 
-        val jogador = Jogador("Ze", "4", "13/02/1998","925887487")
+        val jogador = Jogador("Zé", "4", "13/03/1980","912345676")
         insereJogador(db, jogador)
 
-        jogador.nome = "Andre"
-        jogador.ncamisola = "11"
-        jogador.dataNascimento = "01/01/1987"
-        jogador.telemovel = "925668090"
+        jogador.nome = "Tone"
+        jogador.ncamisola = "4"
+        jogador.dataNascimento = "01/02/1989"
+        jogador.telemovel = "934563212"
 
         val registosAlterados = TabelaBDJogador(db).update(
-            jogador.toContentValues(),
+            jogador  .toContentValues(),
             "${BaseColumns._ID}=?",
             arrayOf("${jogador.id}")
         )
@@ -335,7 +350,6 @@ class BaseDadosTeste {
 
         db.close()
     }
-
 
     @Test
     fun consegueLerTreinador() {

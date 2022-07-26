@@ -27,7 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/TeamName"
-                    android:inputType="number"
                     android:textColorHint="#757575"
                     tools:ignore="TextContrastCheck" />
 

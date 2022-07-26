@@ -39,8 +39,7 @@
                     android:id="@+id/editTextDataNascimento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/BirthDate"
-                    android:inputType="number" />
+                    android:hint="@string/BirthDate" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -56,8 +55,7 @@
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
         </com.google.android.material.textfield.TextInputLayout>
+
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
